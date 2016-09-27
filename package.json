@@ -1,0 +1,19 @@
+{
+  "name": "leviathan",
+  "version": "1.0.0",
+  "description": "Levi Jeans Are Sweet",
+  "main": "none.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1337programming/leviathan.git"
+  },
+  "author": "Patrick Opie and Aneeth Krish",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/1337programming/leviathan/issues"
+  },
+  "homepage": "https://github.com/1337programming/leviathan"
+}

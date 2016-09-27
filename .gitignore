@@ -2,6 +2,8 @@
 logs
 *.log
 npm-debug.log*
+.idea
+~
 
 # Runtime data
 pids
@@ -35,3 +37,8 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# TypeScript Generated Files
+*.js.map
+nfc/**/*.js
+
