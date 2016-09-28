@@ -1,0 +1,19 @@
+{
+  "name": "nfc",
+  "version": "0.0.1",
+  "scripts": {
+    "prestart": "tsc",
+    "start": "node src/server.js",
+    "postinstall": "typings install"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "rx": "^4.1.0",
+    "serialport": "^4.0.1",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3"
+  }
+}

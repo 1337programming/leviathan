@@ -41,4 +41,6 @@ jspm_packages
 # TypeScript Generated Files
 *.js.map
 nfc/**/*.js
-
+kiosk/**/*.js
+retail/**/*.js
+[Tt]ypings*/
