@@ -54,11 +54,10 @@ let uidFeedSubscription = streamEmitter.listen('UID', (uid:string) => {
     } else if (body) {
       console.log(body);
       if (response) {
-        console.log(response.statusCode);
+        console.log(response.statusCode, response.statusMessage);
       }
     }
   });
-  
 });
 
 http.listen(CONFIG.port, () => {
