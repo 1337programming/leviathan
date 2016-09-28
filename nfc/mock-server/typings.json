@@ -2,11 +2,13 @@
   "name": "nfc",
   "dependencies": {
     "body-parser": "registry:npm/body-parser#1.15.2+20160815132839",
-    "express": "registry:npm/express#4.14.0+20160925001530"
+    "express": "registry:npm/express#4.14.0+20160925001530",
+    "request": "registry:npm/request#2.69.0+20160428223725"
   },
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "node": "registry:dt/node#6.0.0+20160925070332",
+    "serialport": "registry:dt/serialport#4.0.1+20160915134249",
     "socket.io": "registry:dt/socket.io#1.4.4+20160909205835"
   }
 }
