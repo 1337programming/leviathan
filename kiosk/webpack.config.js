@@ -28,7 +28,7 @@ if (argv.prod) {
   config.plugins.push(new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'app/index.html')
   }));
-  config.plugins.push(new FaviconsWebpackPlugin(path.resolve(__dirname, 'app/images/taaps-logo.png')));
+  config.plugins.push(new FaviconsWebpackPlugin(path.resolve(__dirname, 'app/images/tmobile-logo.png')));
   /*
    @TODO figure out why Uglify doesn't work
    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
