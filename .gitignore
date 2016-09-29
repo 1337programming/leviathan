@@ -44,3 +44,8 @@ nfc/**/*.js
 kiosk/**/*.js
 retail/**/*.js
 [Tt]ypings*/
+
+# Express server and Firebase key and cert
+service-account-credentials.json
+server.crt
+server.key
