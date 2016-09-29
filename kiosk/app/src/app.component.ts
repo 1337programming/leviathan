@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 
 @Component({
-  selector: 'auction-app',
+  selector: 'kiosk',
   template: `
         <div (window:resize)="onWindowResize()">
             <header-bar></header-bar>
