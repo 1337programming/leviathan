@@ -3,6 +3,10 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "tns livesync ios --emulator --watch"
+  },
   "nativescript": {
     "id": "org.nativescript.retail",
     "tns-ios": {
