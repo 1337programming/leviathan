@@ -46,6 +46,7 @@ retail/**/*.js
 
 # Omit required js files
 !kiosk/webpack.config.js
+!kiosk/webpack/**/*.js
 !retail/webpack.config.js
 !retail/hooks/**/*.js
 [Tt]ypings*/
