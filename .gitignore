@@ -43,6 +43,11 @@ jspm_packages
 nfc/**/*.js
 kiosk/**/*.js
 retail/**/*.js
+
+# Omit required js files
+!kiosk/webpack.config.js
+!retail/webpack.config.js
+!retail/hooks/**/*.js
 [Tt]ypings*/
 [Pp]latforms*/
 
