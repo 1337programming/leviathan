@@ -5,14 +5,15 @@ import {HttpModule} from '@angular/http';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 // Modules
-import {HomeModule} from './modules/home/home.module';
-import {AuctionModule} from './modules/auction/auction.module';
-import {ContactModule} from './modules/contact/contact.module';
+import {AddFundsModule} from './modules/add-funds/add-funds.module';
+import {AccountModule} from './modules/account/account.module';
 
 // Components
 import {AppComponent} from './app.component';
 import {FooterComponent} from './common/components/footer/footer.component';
 import {HeaderComponent} from './common/components/header/header.component';
+import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
+import {ScannerComponent} from './common/components/scanner/scanner.component';
 
 // Routes
 import {routing} from './app.router';
@@ -21,10 +22,10 @@ import {routing} from './app.router';
 
 @NgModule({
   imports: [
-    BrowserModule, ReactiveFormsModule, FormsModule, HttpModule,
-    routing, HomeModule, AuctionModule, ContactModule
+    BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, AddFundsModule, AccountModule,
+    routing,
   ],
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],

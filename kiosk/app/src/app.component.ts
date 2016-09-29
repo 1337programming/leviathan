@@ -1,12 +1,10 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'kiosk',
   template: `
         <div (window:resize)="onWindowResize()">
-            <header-bar></header-bar>
             <router-outlet></router-outlet>
-            <footer-bar></footer-bar>
             <!--<loading-indicator *ngIf="isLoading()" [progress]="getLoadProgress()"></loading-indicator>-->
         </div>
             `
