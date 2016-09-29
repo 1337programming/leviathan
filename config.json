@@ -4,5 +4,11 @@
     "server_config": {
       "port": 3000
     }
+  },
+  "node_server": {
+    "server_config": {
+      "port": 8080,
+      "endpoint": "http://localhost"
+    }
   }
 }

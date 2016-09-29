@@ -1,0 +1,33 @@
+<p-dialog header="Advance Search" [height]="500" [width]="900" [responsive]="true"[(visible)]="showdialog" modal="modal" showEffect="fade">
+    <advance-search-form></advance-search-form>
+    <footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="showdialog=false" label="No"></button>
+            <button type="button" pButton icon="fa-check" (click)="showdialog=false" label="Yes"></button>
+        </div>
+    </footer>
+</p-dialog>
+
+<table class="table">
+    <thead class="thead-inverse">
+    <tr class="auction-tr">
+        <th></th>
+        <th>House Name *</th>
+        <th>Rate / Yield *</th>
+        <th>BIN</th>
+        <th>Comments</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of [1,2,3,4,5,6,7,8,9,10]">
+        <th scope="row"><a pTooltip="Advance search" (click)="showDialog()"><i class="fa fa-search"></i></a></th>
+        <td><input class="form-control" pTooltip="Enter house name"></td>
+        <td><input type="number" pTooltip="Digit input" tooltipPosition="bottom" class="form-control">
+        </td>
+        <td><input type="number" class="form-control" pTooltip="Input is disabled"
+                   tooltipPosition="left" disabled></td>
+        <td><input type="number" class="form-control" pTooltip="Input is disabled"
+                   tooltipPosition="top" disabled></td>
+    </tr>
+    </tbody>
+</table>

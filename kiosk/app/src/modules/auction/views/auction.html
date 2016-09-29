@@ -1,0 +1,55 @@
+<p-growl [value]="msgs"></p-growl>
+
+<p-dialog header="Confirmation" [responsive]="true"[(visible)]="showConfirm" modal="modal" showEffect="fade">
+    <p>Are you sure you wish to submit?</p>
+    <footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="showConfirm=false" label="No"></button>
+            <button type="button" pButton icon="fa-check" (click)="continue()" label="Yes"></button>
+        </div>
+    </footer>
+</p-dialog>
+
+<div class="container">
+    <div class="row">
+        <h2>Auction System</h2>
+        <p>Place auction bid below, rules and information found <a href="#">here</a>.</p>
+    </div>
+    <div class="row">
+        <user-info></user-info>
+    </div>
+    <div class="row">
+        <div class="container">
+            <p-tabMenu [model]="states" [activeItem]="activeState"></p-tabMenu>
+            <house [hidden]="!showHouse"></house>
+            <customer [hidden]="!showCustomer"></customer>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>House Bids for this Tender</th>
+                <th>Customer Bids for this Tender</th>
+                <th>Total Bids for this Tender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+
+                        <div class="input-group-addon">.00</div>
+                    </div>
+                </td>
+                <td><input class="form-control"></td>
+                <td><input class="form-control"></td>
+            </tr>
+            </tbody>
+        </table>
+        <p-splitButton label="Submit" icon="fa-check" (onClick)="save()" [model]="options"></p-splitButton>
+    </div>
+</div>
+

@@ -1,0 +1,39 @@
+.well {
+  text-align: center;
+}
+
+.loading {
+  text-align:center;
+
+}
+@keyframes loading {
+  0% { border-top-color: #d13632; }
+  11% { border-top-color: #e2571e; }
+  22% { border-top-color: #E09128; }
+  33% { border-top-color: #ffe400; }
+  44% { border-top-color: #7dd132; }
+  50% { height: 100px; margin-top: 0px; }
+  55% { border-top-color: #32D152; }
+  66% { border-top-color: #32d15b; }
+  77% { border-top-color: #32bcd1; }
+  88% { border-top-color: #323ad1; }
+  99% { border-top-color: #cb32d1; }
+  100% { border-top-color: #cb32d1; }
+}
+@mixin inner() {
+  height: 10px;
+  width: 10px;
+  background-color: #000000;
+  display: inline-block;
+  margin-top: 90px;
+  animation: loading 2.5s infinite;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-top: 5px solid #333;
+}
+@mixin loading() {
+  @for $i from 1 through 10 {
+    .loading-#{$i} { @include inner(); -webkit-animation-delay: $i/4+s; animation-delay: $i/4+s; }
+  }
+}
+.loading { @include loading(); }
