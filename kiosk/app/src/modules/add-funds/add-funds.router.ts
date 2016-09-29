@@ -3,7 +3,11 @@ import {ModuleWithProviders}  from '@angular/core';
 import {AddFundsComponent} from './add-funds.component';
 
 const routes: Routes = [
-  {path: 'add-funds', component: AddFundsComponent}
+  {path: 'add-funds', children: [
+    {path: '', component: AddFundsComponent},
+    {path: 'payment', component: AddFundsComponent},
+    {path: 'confirmation', component: AddFundsComponent}
+  ]}
 ];
 
 /**
