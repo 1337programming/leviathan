@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 
 // Components
 import {AddFundsComponent} from './add-funds.component';
+import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 
 // Directives
 
@@ -16,7 +17,7 @@ import {routing} from './add-funds.router';
   imports: [
     CommonModule, ReactiveFormsModule, FormsModule, routing
   ],
-  declarations: [AddFundsComponent],
+  declarations: [AddFundsComponent, ConfirmationComponent],
   providers: []
 })
 export class AddFundsModule {

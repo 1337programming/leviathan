@@ -1,3 +1,245 @@
+/* Header */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Tele-Grotesk", sans-serif;
+  color: #323232;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+h1 {
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 74px;
+}
+h2 {
+  font-size: 54px;
+  font-weight: 300;
+  line-height: 65px;
+}
+h3 {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 48px;
+}
+h4 {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 38px;
+}
+h5 {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 31px;
+}
+h6 {
+  font-size: 24px;
+  font-weight: 200;
+  line-height: 29px;
+}
+label {
+  font-weight: inherit;
+}
+label.disabled {
+  cursor: not-allowed;
+}
+label.disabled p,
+label.disabled h1,
+label.disabled h2,
+label.disabled h3,
+label.disabled h4,
+label.disabled h5,
+label.disabled h6 {
+  color: #BEBEBE;
+}
+.lead {
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 0;
+}
+p,
+.p {
+  color: #5A5A5A;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 0;
+}
+p.bold,
+.p.bold,
+p .bold,
+.p .bold {
+  font-weight: bold;
+}
+.small {
+  font-size: 14px;
+  line-height: 17px;
+}
+.xsmall {
+  font-size: 12px;
+  line-height: 15px;
+}
+.legal {
+  font-size: 10px;
+  line-height: 12px;
+}
+ul.bulleted-list {
+  margin-bottom: 0;
+  margin-left: -24px;
+}
+ul.bulleted-list li {
+  margin-top: 10px;
+}
+a:focus {
+  outline: 0;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.price-text {
+  font-family: "Tele-Grotesk", sans-serif;
+  font-weight: 200;
+  color: #323232;
+}
+.price-text strike,
+.price-text s {
+  text-decoration: none;
+  position: relative;
+}
+.price-text strike:before,
+.price-text s:before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid #000000;
+  top: 40%;
+  left: 0;
+}
+.price-text.n1 {
+  font-size: 50px;
+  line-height: 60px;
+}
+.price-text.n1.digits-5 {
+  font-size: 40px;
+  line-height: 50px;
+}
+.price-text.n1.digits-6 {
+  font-size: 30px;
+  line-height: 40px;
+}
+.price-text.n1.digits-6 .n2 {
+  top: 8px;
+}
+.price-text.n3 {
+  font-size: 27px;
+  line-height: 27px;
+}
+.price-text sup {
+  line-height: 1;
+  vertical-align: top;
+}
+.price-text sup.n2 {
+  top: 10px;
+  font-size: 20px;
+}
+.price-text sup.n4 {
+  top: 2px;
+  font-size: 13px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .price-text.n1.digits-4 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+  .price-text.n1.digits-5 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .price-text.n1.digits-5 .n2 {
+    top: 8px;
+  }
+  .price-text.n1.digits-6 {
+    font-size: 25px;
+    line-height: 35px;
+  }
+  .price-text.n1.digits-6 .n2 {
+    top: 6px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  h2 {
+    font-size: 42px;
+    line-height: 50px;
+  }
+  h3 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  h4 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  h5 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  h6 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 38px;
+  }
+  h3 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  h5 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  h6 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  body {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  p,
+  .p {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .lead {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .small {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .xsmall {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
+/* Header End */
 /* Buttons */
 .btn {
   -webkit-border-radius: 23px;
