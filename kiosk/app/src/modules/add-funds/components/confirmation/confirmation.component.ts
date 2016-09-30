@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 let style = require('!!raw!sass!./views/confirmation.scss');
 let template = require('./views/confirmation.html');
 

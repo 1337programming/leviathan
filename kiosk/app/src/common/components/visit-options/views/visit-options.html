@@ -1,1 +1,27 @@
+<p-growl [value]="msgs"></p-growl>
 
+<div class="container margin-top">
+
+    <div id="confirmation"><!-- confirmation -->
+
+        <div class="page-title gray-bg">
+            <div class="container">
+                <h1 class="m-t-xl m-b-xl">Welcome! What can we help you with today?</h1>
+            </div>
+        </div>
+
+        <hr class="divider m-t-xl">
+
+        <div class="row">
+            <div class="col-xs-12 buttons-container button-spacing-legal text-center">
+                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('New Customer')">I'm a new customer</button>
+                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('Data Upgrade')">I ran out of data</button>
+                <button class="btn btn-secondary blade-button" [routerLink]="['/account']">My bill is too high</button>
+                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('New Phone')">I want a new phone</button>
+                <button class="btn btn-secondary blade-button" [routerLink]="['/add-funds']">I need to add funds</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-  background: #e6e6e6 !important;
+  background: #ffffff !important;
   height: 100%;
 }
 
@@ -433,8 +433,32 @@ div.user-image {
 }
 
 .spacing {
-  margin: 20px;
+  margin: 40px;
 }
 .margin-top {
   margin-top: 25px;
 }
+
+.blade-button {
+  width: 95%;
+  border-radius: 0;
+  border-color: #1e1e1e;
+  color: #1e1e1e;
+  font-size: 32px;
+  height: 50px;
+  font-weight: bold;
+  margin: 4px;
+}
+
+.blade-button:hover {
+  color: #e6e6e6;
+  border-color: #1e1e1e;
+  background-color: #E20074;
+}
+
+.blade-button:active {
+  color: #d5d5d5;
+  border-color: #1e1e1e;
+  background-color: #BA0060;
+}
+

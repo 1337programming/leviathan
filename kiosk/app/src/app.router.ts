@@ -1,11 +1,12 @@
 import {Routes, RouterModule}   from '@angular/router';
 import {ModuleWithProviders}  from '@angular/core';
 import {ScannerComponent} from './common/components/scanner/scanner.component';
-
+import {VisitOptionsComponent} from './common/components/visit-options/visit-options.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'scan', pathMatch: 'full'},
-  {path: 'scan', component: ScannerComponent}
+  {path: 'scan', component: ScannerComponent},
+  {path: 'visit-options', component: VisitOptionsComponent}
 ];
 
 
