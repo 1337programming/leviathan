@@ -1,25 +1,36 @@
-<form action="#">
+<div class="container fadein">
 
-    <fieldset>
+    <div class="row">
+        <form action="#">
 
-        <legend>Sign In</legend>
+            <fieldset>
 
-        <label for="username" class="vhide">Name</label>
-        <input id="username" name="username" type="text" placeholder="John Smith" required minlength="2">
+                <legend>Sign In</legend>
 
-        <label for="password" class="vhide">Phone Number</label>
-        <input id="password" name="password" type="text" placeholder="333-444-6789" required minlength="6">
+                <label for="username" class="vhide">Name</label>
+                <input id="username" name="username" type="text" placeholder="John Smith" required minlength="2">
 
-        <label for="password" class="vhide">Password</label>
-        <input id="password" name="password" type="text" placeholder="****" required minlength="6">
+                <label for="password" class="vhide">Phone Number</label>
+                <input id="password" name="password" type="text" placeholder="333-444-6789" required minlength="6">
 
-        <input type="checkbox" name="remember" id="remember" class="vhide">
-        <label for="remember">
-            <i class="octicon octicon-check"></i> Allow SMS Notifications
-        </label>
+                <label for="password" class="vhide">Password</label>
+                <input id="password" name="password" type="text" placeholder="****" required minlength="6">
 
-        <button class="signin">Sign in</button>
+                <input type="checkbox" name="remember" id="remember" class="vhide">
+                <label for="remember">
+                    <i class="octicon octicon-check"></i> Allow SMS Notifications
+                </label>
 
-    </fieldset>
+                <button class="signin" (click)="signIn()">Sign in</button>
 
-</form>
+            </fieldset>
+
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="row center scan">
+            <button class="btn btn-primary" [routerLink]="['/identify/scan']">Scan</button>
+        </div>
+    </div>
+</div>

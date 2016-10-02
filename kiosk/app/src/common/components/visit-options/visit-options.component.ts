@@ -1,6 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
 import {Message} from 'primeng/primeng'
 import {Fireworks} from '../fireworks/fireworks.component';
+import {AuthService} from '../../services/auth.service';
+import {Options, Option} from './options';
 
 let template = require('./views/visit-options.html');
 let style = require('!!raw!sass!./views/visit-options.scss');
@@ -16,15 +19,22 @@ export class VisitOptionsComponent {
   
   private msgs: Array<Message>;
   private hideCanvas: boolean;
+  private options:Array<Option>;
   
-  constructor() {
+  constructor(private authService:AuthService, private router:Router) {
+    this.options = Options;
     this.msgs = [];
     this.hideCanvas = true;
   }
   
-  private onDisabled(item: string) {
-    this.msgs.push({severity: 'warn', summary: 'Flow is not available', detail: `Action '${item}' is not 
+  private selectOption(option:Option):void {
+    if (option.disabled) {
+      this.msgs.push({severity: 'warn', summary: 'Flow is not available', detail: `Action '${option.title}' is not 
     available at this time`});
+    } else {
+      this.authService.setFlow(option.route);
+      this.router.navigate([`/${option.route}`]);
+    }
   }
   
   private onClickOther() {

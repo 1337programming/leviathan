@@ -15,11 +15,7 @@
 
         <div class="row">
             <div class="col-xs-12 buttons-container button-spacing-legal text-center">
-                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('New Customer')">I'm a new customer</button>
-                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('Data Upgrade')">I ran out of data</button>
-                <button class="btn btn-secondary blade-button" [routerLink]="['/account']">My bill is too high</button>
-                <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('New Phone')">I want a new phone</button>
-                <button class="btn btn-secondary blade-button" [routerLink]="['/add-funds']">I need to add funds</button>
+                <button *ngFor="let option of options" class="btn btn-secondary blade-button" [class.disabled]="option.disabled" (click)="selectOption(option)">{{option.description}}</button>
                 <button class="btn btn-secondary blade-button" (click)="onClickOther()">Other...</button>
             </div>
         </div>

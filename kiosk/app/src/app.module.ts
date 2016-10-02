@@ -20,14 +20,15 @@ import {VisitOptionsComponent} from './common/components/visit-options/visit-opt
 import {Fireworks} from './common/components/fireworks/fireworks.component';
 
 // Routes
-import {routing} from './app.router';
+import {routing, appRoutingProviders} from './app.router';
 
 // Services
 import {AudioContextMock} from './common/mock/mock-audio-context';
 import {Samples} from './common/services/samples.service';
 import {Random} from './common/services/random.service';
 import {Audio} from './common/services/audio.service';
-
+import {AuthService} from './common/services/auth.service';
+//Gaurd
 
 @NgModule({
   imports: [
@@ -37,6 +38,8 @@ import {Audio} from './common/services/audio.service';
   declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent, HomeComponent,
     VisitOptionsComponent, Fireworks],
   providers: [
+    AuthService,
+    appRoutingProviders, // AuthGuard
     Random,
     Samples,
     Audio,

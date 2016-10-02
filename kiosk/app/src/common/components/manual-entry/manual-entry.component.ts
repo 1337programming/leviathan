@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 let template = require('./views/manual-entry.html');
 let style = require('!!raw!sass!./views/manual-entry.scss');
@@ -8,9 +9,15 @@ let style = require('!!raw!sass!./views/manual-entry.scss');
   template: template,
   styles: [style]
 })
-export class ManualEntryComponent {
+export class ManualEntryComponent implements OnInit {
   
-  constructor() {
+  constructor(private authService:AuthService) {
+  }
+  
+  ngOnInit() {
+  }
+  
+  private signIn() {
     
   }
   

@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 let template = require('./views/home.html');
 let stylesheet = require('!!raw!sass!./views/home.scss');
@@ -9,12 +10,16 @@ let stylesheet = require('!!raw!sass!./views/home.scss');
   template: template,
   styles: [stylesheet],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   
   private enter: boolean;
   
-  constructor(private router:Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.enter = false;
+  }
+  
+  public ngOnInit() {
+    this.authService.deleteToken();
   }
   
   private enterKiosk() {

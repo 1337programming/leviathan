@@ -4,6 +4,7 @@ import {VisitOptionsComponent} from './common/components/visit-options/visit-opt
 import {HomeComponent} from './common/components/home/home.component';
 import {ScannerComponent} from './common/components/scanner/scanner.component';
 import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
+import {AuthGuard} from './common/services/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,11 +18,12 @@ const routes: Routes = [
 ];
 
 
+
 /**
  * Routing Providers for the App
  * @type {Array}
  */
-export const appRoutingProviders: any[] = [];
+export const appRoutingProviders: any[] = [AuthGuard];
 
 /**
  * Routes for the App
