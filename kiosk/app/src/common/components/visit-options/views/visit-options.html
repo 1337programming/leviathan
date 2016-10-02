@@ -1,6 +1,7 @@
 <p-growl [value]="msgs"></p-growl>
+<fireworks [hidden]="hideCanvas"></fireworks>
 
-<div class="container margin-top">
+<div class="container margin-top fadein">
 
     <div id="confirmation"><!-- confirmation -->
 
@@ -19,9 +20,12 @@
                 <button class="btn btn-secondary blade-button" [routerLink]="['/account']">My bill is too high</button>
                 <button class="btn btn-secondary blade-button disabled" (click)="onDisabled('New Phone')">I want a new phone</button>
                 <button class="btn btn-secondary blade-button" [routerLink]="['/add-funds']">I need to add funds</button>
+                <button class="btn btn-secondary blade-button" (click)="onClickOther()">Other...</button>
             </div>
         </div>
 
     </div>
 
 </div>
+
+

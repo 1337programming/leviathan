@@ -1,0 +1,17 @@
+canvas {
+  cursor: crosshair;
+  display: block;
+  position: absolute;
+  z-index: 3;
+}
+
+canvas:active {
+  cursor: crosshair;
+}
+
+#gui {
+  right: 0;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}

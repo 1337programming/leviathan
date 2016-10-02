@@ -14,22 +14,33 @@ import {AppComponent} from './app.component';
 import {FooterComponent} from './common/components/footer/footer.component';
 import {HeaderComponent} from './common/components/header/header.component';
 import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
+import {HomeComponent} from './common/components/home/home.component';
 import {ScannerComponent} from './common/components/scanner/scanner.component';
 import {VisitOptionsComponent} from './common/components/visit-options/visit-options.component';
+import {Fireworks} from './common/components/fireworks/fireworks.component';
 
 // Routes
 import {routing} from './app.router';
 
 // Services
+import {AudioContextMock} from './common/mock/mock-audio-context';
+import {Samples} from './common/services/samples.service';
+import {Random} from './common/services/random.service';
+import {Audio} from './common/services/audio.service';
+
 
 @NgModule({
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, GrowlModule, AddFundsModule, AccountModule,
     routing
   ],
-  declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent,
-    VisitOptionsComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent, HomeComponent,
+    VisitOptionsComponent, Fireworks],
   providers: [
+    Random,
+    Samples,
+    Audio,
+    {provide: 'audioContext', useValue: new (window['AudioContext'] || window['webkitAudioContext'] || AudioContextMock)},
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

@@ -462,3 +462,20 @@ div.user-image {
   background-color: #BA0060;
 }
 
+.fadein {
+  animation: fadein 2s;
+}
+
+.fadeout {
+  animation: fadeout 2s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}

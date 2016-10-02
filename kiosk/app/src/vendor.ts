@@ -8,3 +8,4 @@ import '@angular/http';
 import '@angular/router';
 import 'primeng/primeng';
 import 'rxjs/Rx';
+import './webkit-audio-context-monkeypatch';

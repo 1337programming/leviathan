@@ -1,4 +1,19 @@
-<div class="loading-container">
-    <div class="inner"></div>
-    <div class="inner-img img"></div>
+<div class="container">
+    <div class="row">
+        <h1 class="center">Scan your device</h1>
+    </div>
+
+    <div class="row">
+        <h4 class="description">Activate NFC to sign in</h4>
+    </div>
+
+    <div class="row">
+        <div class="center">
+            <span class='pulse-button'>Scan</span>
+        </div>
+    </div>
+
+    <div class="row center manual-entry">
+        <button class="btn btn-primary" [routerLink]="['/identify/manual-entry']">Manual Entry</button>
+    </div>
 </div>
