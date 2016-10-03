@@ -78,5 +78,6 @@ config.module = {};
 config.module.loaders = require('./webpack/loaders');
 config.module.preLoaders = require('./webpack/preloaders');
 config.tslint = {
-  configuration: require('./tslint.json')
+  configuration: require('./tslint.json'),
+  emitErrors: false
 };

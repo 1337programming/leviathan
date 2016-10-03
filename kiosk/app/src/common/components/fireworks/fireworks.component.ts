@@ -1,23 +1,25 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener} from '@angular/core';
-import {Master, BuildCTX} from './helpers/master';
-import {rand, detectmobile} from "./helpers/helpers";
+import {MASTER, BuildCTX} from './helpers/master';
+import {rand, detectmobile} from './helpers/helpers';
 import {Firework} from './classes/firework';
 import {Particle} from './classes/particle';
 import {Samples} from 'app/src/common/services/samples.service';
 import {Audio} from 'app/src/common/services/audio.service';
 import {ParticleI, FireworkI} from './interfaces/fireworks.interface';
-let template = require('./views/fireworks.html');
 let style = require('!!raw!sass!./views/fireworks.scss');
 
 @Component({
   selector: 'fireworks',
-  template: `<div #container><canvas #fireworks [attr.width]="width" [attr.height]="height"></canvas></div>`,
+  template: `<div #container><canvas #fireworks [attr.width]='width' [attr.height]='height'></canvas></div>`,
   styles: [style]
 })
 export class Fireworks implements AfterViewInit, OnInit {
   
-  @ViewChild("fireworks") fireworksCanvas: ElementRef;
-  @ViewChild("container") canvasContainer: ElementRef;
+  public showShockwave: boolean;
+  public showTarget: boolean;
+  
+  @ViewChild('fireworks') private fireworksCanvas: ElementRef;
+  @ViewChild('container') private canvasContainer: ElementRef;
   
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
@@ -47,49 +49,47 @@ export class Fireworks implements AfterViewInit, OnInit {
   private width: number;
   private height: number;
   private timeout: number;
-  public showShockwave: boolean;
-  public showTarget: boolean;
-  
   private rocketSamples: Array<any>;
   private explosionSamples: Array<any>;
   
   constructor(private samples: Samples, private audio: Audio) {
     this.width = innerWidth;
     this.height = innerHeight;
-    this.dt = Master.dt;
+    this.dt = MASTER.dt;
     this.oldTime = Date.now();
     
     this.particles = [];
-    this.particleCount = Master.particleCount;
+    this.particleCount = MASTER.particleCount;
     this.fireworks = [];
     this.mx = this.cw / 2;
     this.my = this.ch / 2;
-    this.currentHue = Master.currentHue;
-    this.partSpeed = Master.partSpeed;
-    this.partSpeedVariance = Master.partSpeedVariance;
-    this.partWind = Master.partWind;
-    this.partFriction = Master.partFriction;
-    this.partGravity = Master.partGravity;
-    this.hueMin = Master.hueMin;
-    this.hueMax = Master.hueMax;
-    this.fworkSpeed = Master.fworkSpeed;
-    this.fworkAccel = Master.fworkAccel;
-    this.hueVariance = Master.hueVariance;
-    this.flickerDensity = Master.flickerDensity;
-    this.showShockwave = Master.showShockwave;
-    this.showTarget = Master.showTarget;
+    this.currentHue = MASTER.currentHue;
+    this.partSpeed = MASTER.partSpeed;
+    this.partSpeedVariance = MASTER.partSpeedVariance;
+    this.partWind = MASTER.partWind;
+    this.partFriction = MASTER.partFriction;
+    this.partGravity = MASTER.partGravity;
+    this.hueMin = MASTER.hueMin;
+    this.hueMax = MASTER.hueMax;
+    this.fworkSpeed = MASTER.fworkSpeed;
+    this.fworkAccel = MASTER.fworkAccel;
+    this.hueVariance = MASTER.hueVariance;
+    this.flickerDensity = MASTER.flickerDensity;
+    this.showShockwave = MASTER.showShockwave;
+    this.showTarget = MASTER.showTarget;
     this.clearAlpha = 25;
     
-    //this.canvasContainer.append(this.canvas);
-    this.lineWidth = Master.lineWidth;
+    this.lineWidth = MASTER.lineWidth;
     this.explosionSamples = [];
     this.rocketSamples = [];
   }
   
-  ngOnInit() {
-    /*this.samples.getSample('explosion1').then(sample => {
+  public ngOnInit() {
+    /*
+     this.samples.getSample('explosion1').then(sample => {
      this.explosionSamples.push(sample);
-     });*/
+     });
+     */
     this.samples.getSample('explosion2').then(sample => {
       this.explosionSamples.push(sample);
     });
@@ -105,7 +105,7 @@ export class Fireworks implements AfterViewInit, OnInit {
     });
   }
   
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.canvas = this.fireworksCanvas.nativeElement;
     this.canvasContainer = this.canvasContainer.nativeElement;
     
@@ -150,14 +150,14 @@ export class Fireworks implements AfterViewInit, OnInit {
       }, initialLaunchCount * delay);
     }
   }
-
+  
   private canvasLoop() {
     requestAnimationFrame(() => {
       this.canvasLoop();
     });
     this.updateDelta();
     this.context.globalCompositeOperation = 'destination-out';
-    this.context.fillStyle = 'rgba(0,0,0,' + this.clearAlpha / 100 + ')';
+    this.context.fillStyle = `rgba(0,0,0,${this.clearAlpha / 100})`;
     this.context.fillRect(0, 0, this.cw, this.ch);
     this.context.globalCompositeOperation = 'lighter';
     this.updateFireworks();
@@ -172,10 +172,10 @@ export class Fireworks implements AfterViewInit, OnInit {
   
   private updateDelta(): void {
     let newTime: number = Date.now();
-    Master.dt = (newTime - this.oldTime) / 16;
-    Master.dt = (Master.dt > 5) ? 5 : Master.dt;
+    MASTER.dt = (newTime - this.oldTime) / 16;
+    MASTER.dt = (MASTER.dt > 5) ? 5 : MASTER.dt;
     this.oldTime = newTime;
-    this.dt = Master.dt;
+    this.dt = MASTER.dt;
   }
   
   private updateFireworks() {
@@ -183,9 +183,8 @@ export class Fireworks implements AfterViewInit, OnInit {
     while (i--) {
       let firework: Firework = this.fireworks[i].firework;
       this.context.lineWidth = firework.lineWidth;
-      let data = firework.update(); //@TODO data response type
+      let data = firework.update(); // @TODO data response type
       if (data.hitX && data.hitY) {
-        //let randExplosion = rand(0, 9);
         this.createParticles(data.targetX, data.targetY, data.hue);
         this.fireworks[i].audioStop();
         this.fireworks.splice(i, 1);
@@ -261,12 +260,12 @@ export class Fireworks implements AfterViewInit, OnInit {
   // @TODO theed to fix this
   
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  private onResize(event) {
     clearTimeout(this.timeout);
   }
   
   @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
+  private onMouseDown(event: MouseEvent) {
     let randLaunch: number = rand(0, 5);
     this.mx = event.pageX;
     this.my = event.pageY;
@@ -275,7 +274,7 @@ export class Fireworks implements AfterViewInit, OnInit {
   }
   
   @HostListener('mousemove.fireworks', ['$event'])
-  onMouseMove(event: MouseEvent) {
+  private onMouseMove(event: MouseEvent) {
     let randLaunch: number = rand(0, 5);
     this.mx = event.pageX;
     this.my = event.pageY;
@@ -284,7 +283,7 @@ export class Fireworks implements AfterViewInit, OnInit {
   }
   
   @HostListener('mouseup', ['$event'])
-  onMouseUp(event: MouseEvent) {
+  private onMouseUp(event: MouseEvent) {
     
   }
   

@@ -11,7 +11,7 @@ let style = require('!!raw!sass!./views/queue-dashboard.scss');
 })
 export class QueueDashboardComponent implements OnInit {
   
-  constructor(private router:Router) {
+  constructor(private router: Router) {
   }
   
   public ngOnInit() {

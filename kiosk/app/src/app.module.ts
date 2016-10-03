@@ -7,47 +7,26 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 // Modules
 import {AddFundsModule} from './modules/add-funds/add-funds.module';
 import {AccountModule} from './modules/account/account.module';
-import {GrowlModule} from 'primeng/primeng';
 import {QueueModule} from './modules/queue/queue.module';
+import {GrowlModule, DialogModule} from 'primeng/primeng';
+import {KioskCommonModule} from './common/common.module';
 
 // Components
 import {AppComponent} from './app.component';
-import {FooterComponent} from './common/components/footer/footer.component';
-import {HeaderComponent} from './common/components/header/header.component';
-import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
-import {HomeComponent} from './common/components/home/home.component';
-import {ScannerComponent} from './common/components/scanner/scanner.component';
-import {VisitOptionsComponent} from './common/components/visit-options/visit-options.component';
-import {Fireworks} from './common/components/fireworks/fireworks.component';
 
 // Routes
-import {routing, appRoutingProviders} from './app.router';
+import {routing, appRoutingProviders} from './common/app.router';
 
 // Services
-import {AudioContextMock} from './common/mock/mock-audio-context';
-import {Samples} from './common/services/samples.service';
-import {Random} from './common/services/random.service';
-import {Audio} from './common/services/audio.service';
-import {AuthService} from './common/services/auth.service';
-import {NotFoundComponent} from './common/components/404/404.component';
 
 @NgModule({
   imports: [
-    BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, GrowlModule, AddFundsModule, AccountModule,
-    QueueModule, routing
+    BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, GrowlModule, DialogModule, KioskCommonModule,
+    AddFundsModule, AccountModule, QueueModule, routing
   ],
-  declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent, HomeComponent,
-    VisitOptionsComponent, Fireworks, NotFoundComponent],
+  declarations: [AppComponent],
   providers: [
-    AuthService,
     appRoutingProviders, // AuthGuard
-    Random,
-    Samples,
-    Audio,
-    {
-      provide: 'audioContext',
-      useValue: new (window['AudioContext'] || window['webkitAudioContext'] || AudioContextMock)
-    },
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

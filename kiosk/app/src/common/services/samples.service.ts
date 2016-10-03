@@ -11,17 +11,17 @@ const NOTE_SAMPLES = {
 
 @Injectable()
 export class Samples {
-  totalSampleCount = 0;
-  loadedSampleCount = 0;
+  public totalSampleCount = 0;
+  public loadedSampleCount = 0;
   private sampleCache = new Map();
   
-  constructor(@Inject('audioContext') private audioCtx, private ngZone:NgZone) {
+  constructor(@Inject('audioContext') private audioCtx, private ngZone: NgZone) {
     for (const note of Object.keys(NOTE_SAMPLES)) {
       this.getSample(note);
     }
   }
   
-  getSample(key:string):any {
+  public getSample(key: string): any {
     if (!this.sampleCache.has(key)) {
       this.totalSampleCount++;
       this.sampleCache.set(key, new Promise((resolve, reject) => {

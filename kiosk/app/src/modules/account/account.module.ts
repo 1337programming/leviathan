@@ -1,7 +1,9 @@
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
-import {GrowlModule} from 'primeng/primeng';
+
+// Modules
+import {GrowlModule, DialogModule} from 'primeng/primeng';
 
 // Components
 import {AccountComponent} from './account.component';
@@ -12,12 +14,13 @@ import {UpdatePlanComponent} from './components/update-plan/update-plan.componen
 
 // Routes
 import {routing} from './account.router';
+import {KioskCommonModule} from '../../common/common.module';
 
 // Services
 
 @NgModule({
   imports: [
-    CommonModule, ReactiveFormsModule, FormsModule, GrowlModule, routing
+    CommonModule, ReactiveFormsModule, FormsModule, GrowlModule, DialogModule, KioskCommonModule, routing
   ],
   declarations: [AccountComponent, AboutPlanComponent, UpdatePlanComponent],
   providers: []

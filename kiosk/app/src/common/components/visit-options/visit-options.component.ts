@@ -1,36 +1,38 @@
 import {Component, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {Message} from 'primeng/primeng'
+import {Message} from 'primeng/primeng';
 import {Fireworks} from '../fireworks/fireworks.component';
 import {AuthService} from '../../services/auth.service';
-import {Options, Option} from './options';
+import {OPTIONS, Option} from './options';
 
 let template = require('./views/visit-options.html');
 let style = require('!!raw!sass!./views/visit-options.scss');
 
 @Component({
-  selector: 'vist-options',
+  selector: 'visit-options',
   template: template,
   styles: [style]
 })
 export class VisitOptionsComponent {
   
-  @ViewChild(Fireworks) fireworks: Fireworks;
+  @ViewChild(Fireworks) private fireworks: Fireworks;
   
   private msgs: Array<Message>;
   private hideCanvas: boolean;
-  private options:Array<Option>;
+  private options: Array<Option>;
   
-  constructor(private authService:AuthService, private router:Router) {
-    this.options = Options;
+  constructor(private authService: AuthService, private router: Router) {
+    this.options = OPTIONS;
     this.msgs = [];
     this.hideCanvas = true;
   }
   
-  private selectOption(option:Option):void {
+  private selectOption(option: Option): void {
     if (option.disabled) {
-      this.msgs.push({severity: 'warn', summary: 'Flow is not available', detail: `Action '${option.title}' is not 
-    available at this time`});
+      this.msgs.push({
+        severity: 'warn', summary: 'Flow is not available', detail: `Action '${option.title}' is not 
+    available at this time`
+      });
     } else {
       this.authService.setFlow(option.route);
       this.router.navigate([`/${option.route}`]);

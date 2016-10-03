@@ -1,4 +1,4 @@
-export const Options = [
+export const OPTIONS = [
   {
     disabled: true,
     description: 'I\' a new customer',

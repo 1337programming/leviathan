@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {HelpComponent} from '../../common/components/help/help.component';
 
 let style = require('!!raw!sass!./views/add-funds.scss');
 let template = require('./views/add-funds.html');
@@ -8,9 +10,18 @@ let template = require('./views/add-funds.html');
   template: template,
   styles: [style]
 })
-export class AddFundsComponent {
+export class AddFundsComponent implements OnInit {
   
-  constructor() {
+  @ViewChild(HelpComponent) private help: HelpComponent;
+  
+  constructor(private router: Router) {
+  }
+  
+  public ngOnInit() {
+  }
+  
+  private callHelp(): void {
+    this.help.showDialog();
   }
   
 }

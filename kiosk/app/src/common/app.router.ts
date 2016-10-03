@@ -1,24 +1,21 @@
 import {Routes, RouterModule}   from '@angular/router';
 import {ModuleWithProviders}  from '@angular/core';
-import {VisitOptionsComponent} from './common/components/visit-options/visit-options.component';
-import {HomeComponent} from './common/components/home/home.component';
-import {ScannerComponent} from './common/components/scanner/scanner.component';
-import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
-import {AuthGuard} from './common/services/auth-guard.service';
-import {QueueComponent} from './common/components/queue/queue.component';
+import {VisitOptionsComponent} from './components/visit-options/visit-options.component';
+import {HomeComponent} from './components/home/home.component';
+import {ScannerComponent} from './components/scanner/scanner.component';
+import {ManualEntryComponent} from './components/manual-entry/manual-entry.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'visit-options', component: VisitOptionsComponent},
   {path: 'identify', children: [
-    {path: '', redirectTo: 'scan', pathMatch: 'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'scan', component: ScannerComponent},
     {path: 'manual-entry', component: ManualEntryComponent}
   ]}
 ];
-
-
 
 /**
  * Routing Providers for the App

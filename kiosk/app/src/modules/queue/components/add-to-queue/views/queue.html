@@ -14,7 +14,20 @@
     <div class="row">
         <h3>Why not visit Starbucks while you wait?</h3>
         <h4>
-            Here's $1 off!
+            Here's $1 off! Scan for coupon
         </h4>
+        <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Wikipedia_mobile_en.svg/2000px-Wikipedia_mobile_en.svg.png">
+    </div>
+
+    <div class="row m-t-lg">
+        <div class="col-xs-12 buttons-container button-spacing">
+            <div class="button-box">
+                <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+            </div>
+
+            <div class="button-box">
+                <button class="btn btn-primary" [routerLink]="['/home']">Exit</button>
+            </div>
+        </div>
     </div>
 </div>

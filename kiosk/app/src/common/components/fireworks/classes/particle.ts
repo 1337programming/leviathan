@@ -1,5 +1,5 @@
 import {rand, hitTest} from '../helpers/helpers';
-import {Master} from '../helpers/master';
+import {MASTER} from '../helpers/master';
 import {Coord} from '../interfaces/fireworks.interface';
 
 export class Particle {
@@ -29,22 +29,24 @@ export class Particle {
     ];
     this.radius = 1;
     this.angle = rand(0, 360);
-    this.speed = rand(((Master.partSpeed - Master.partSpeedVariance) <= 0) ? 1 : Master.partSpeed - Master.partSpeedVariance, (Master.partSpeed + Master.partSpeedVariance));
-    this.friction = 1 - Master.partFriction / 100;
-    this.gravity = Master.partGravity / 2;
-    this.hue = rand(hue - Master.hueVariance, hue + Master.hueVariance);
+    this.speed = rand(((
+      MASTER.partSpeed - MASTER.partSpeedVariance) <= 0) ? 1 : MASTER.partSpeed - MASTER.partSpeedVariance,
+      (MASTER.partSpeed + MASTER.partSpeedVariance));
+    this.friction = 1 - MASTER.partFriction / 100;
+    this.gravity = MASTER.partGravity / 2;
+    this.hue = rand(hue - MASTER.hueVariance, hue + MASTER.hueVariance);
     this.brightness = rand(50, 80);
     this.alpha = rand(40, 100) / 100;
     this.decay = rand(10, 50) / 1000;
-    this.wind = (rand(0, Master.partWind) - (Master.partWind / 2)) / 25;
-    this.lineWidth = Master.lineWidth;
+    this.wind = (rand(0, MASTER.partWind) - (MASTER.partWind / 2)) / 25;
+    this.lineWidth = MASTER.lineWidth;
     
   }
   
   public update(): boolean {
-    let radians = this.angle * Math.PI / 180;
-    let vx = Math.cos(radians) * this.speed;
-    let vy = Math.sin(radians) * this.speed + this.gravity;
+    let radians: number = this.angle * Math.PI / 180;
+    let vx: number = Math.cos(radians) * this.speed;
+    let vy: number = Math.sin(radians) * this.speed + this.gravity;
     this.speed *= this.friction;
     
     this.coordLast[2].x = this.coordLast[1].x;
@@ -54,24 +56,25 @@ export class Particle {
     this.coordLast[0].x = this.x;
     this.coordLast[0].y = this.y;
     
-    this.x += vx * Master.dt;
-    this.y += vy * Master.dt;
+    this.x += vx * MASTER.dt;
+    this.y += vy * MASTER.dt;
     
     this.angle += this.wind;
     this.alpha -= this.decay;
     
-    if (!hitTest(0, 0, Master.cw, Master.ch, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2)) {
+    if (!hitTest(0, 0, MASTER.cw, MASTER.ch, this.x - this.radius, this.y - this.radius,
+        this.radius * 2, this.radius * 2)) {
       return true;
     } else if (this.alpha < .05) {
       return true;
     } else {
-      return false
+      return false;
     }
     
   }
   
   public draw(ctx: CanvasRenderingContext2D): CanvasRenderingContext2D {
-    var coordRand = (rand(1, 3) - 1);
+    let coordRand: number = (rand(1, 3) - 1);
     ctx.beginPath();
     ctx.moveTo(Math.round(this.coordLast[coordRand].x), Math.round(this.coordLast[coordRand].y));
     ctx.lineTo(Math.round(this.x), Math.round(this.y));
@@ -79,13 +82,14 @@ export class Particle {
     ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
     ctx.stroke();
     
-    if (Master.flickerDensity > 0) {
-      var inverseDensity = 50 - Master.flickerDensity;
+    if (MASTER.flickerDensity > 0) {
+      let inverseDensity: number = 50 - MASTER.flickerDensity;
       if (rand(0, inverseDensity) === inverseDensity) {
         ctx.beginPath();
-        ctx.arc(Math.round(this.x), Math.round(this.y), rand(this.lineWidth, this.lineWidth + 3) / 2, 0, Math.PI * 2, false);
+        ctx.arc(Math.round(this.x), Math.round(this.y), rand(this.lineWidth, this.lineWidth + 3) / 2,
+          0, Math.PI * 2, false);
         ctx.closePath();
-        var randAlpha = rand(50, 100) / 100;
+        let randAlpha: number = rand(50, 100) / 100;
         ctx.fillStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + randAlpha + ')';
         ctx.fill();
       }

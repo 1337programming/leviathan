@@ -20,7 +20,7 @@
     <div class="row spacing">
         <div class="col-xs-12 buttons-container button-spacing">
             <div class="button-box">
-                <button class="btn btn-secondary" [routerLink]="['/queue']">Help</button>
+                <button class="btn btn-secondary" (click)="callHelp()">Help</button>
             </div>
             <div class="button-box">
                 <button class="btn btn-primary" [routerLink]="['/add-funds/confirmation']">Done</button>
@@ -28,3 +28,5 @@
         </div>
     </div>
 </div>
+
+<help #help></help>

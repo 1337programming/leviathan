@@ -11,10 +11,10 @@ let style = require('!!raw!sass!./views/manual-entry.scss');
 })
 export class ManualEntryComponent implements OnInit {
   
-  constructor(private authService:AuthService) {
+  constructor(private authService: AuthService) {
   }
   
-  ngOnInit() {
+  public ngOnInit() {
   }
   
   private signIn() {

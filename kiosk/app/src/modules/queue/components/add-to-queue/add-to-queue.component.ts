@@ -11,10 +11,14 @@ let style = require('!!raw!sass!./views/queue.scss');
 })
 export class QueueComponent implements OnInit {
   
-  constructor(private router:Router) {
+  constructor(private router: Router) {
   }
   
   public ngOnInit() {
+  }
+  
+  private cancel() {
+    
   }
   
 }

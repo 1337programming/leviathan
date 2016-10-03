@@ -5,7 +5,7 @@ let particleCount = 450;
 if (detectmobile()) {
   particleCount = 10;
 }
-export let Master: MasterI = {
+export const MASTER: MasterI = {
   partSpeed: 5,
   partSpeedVariance: 10,
   partFriction: 5,

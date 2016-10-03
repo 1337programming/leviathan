@@ -1,4 +1,4 @@
-import {Master} from '../helpers/master';
+import {MASTER} from '../helpers/master';
 import {rand} from '../helpers/helpers';
 import {Coord} from '../interfaces/fireworks.interface';
 
@@ -41,23 +41,23 @@ export class Firework {
     ];
     this.targetX = targetX;
     this.targetY = targetY;
-    this.speed = Master.fworkSpeed;
+    this.speed = MASTER.fworkSpeed;
     this.angle = Math.atan2(targetY - startY, targetX - startX);
     this.shockwaveAngle = Math.atan2(targetY - startY, targetX - startX) + (90 * (Math.PI / 180));
-    this.acceleration = Master.fworkAccel / 100;
-    this.hue = rand(Master.hueMin, Master.hueMax);
+    this.acceleration = MASTER.fworkAccel / 100;
+    this.hue = rand(MASTER.hueMin, MASTER.hueMax);
     this.brightness = rand(50, 80);
     this.alpha = rand(50, 100) / 100;
-    this.lineWidth = Master.lineWidth;
+    this.lineWidth = MASTER.lineWidth;
     this.targetRadius = 1;
-    this.dt = Master.dt;
-    this.showTarget = Master.showTarget;
-    this.showShockwave = Master.showShockwave;
+    this.dt = MASTER.dt;
+    this.showTarget = MASTER.showTarget;
+    this.showShockwave = MASTER.showShockwave;
   }
   
   public update() {
-    let vx = Math.cos(this.angle) * this.speed;
-    let vy = Math.sin(this.angle) * this.speed;
+    let vx: number = Math.cos(this.angle) * this.speed;
+    let vy: number = Math.sin(this.angle) * this.speed;
     this.speed *= 1 + this.acceleration;
     this.coordLast[2].x = this.coordLast[1].x;
     this.coordLast[2].y = this.coordLast[1].y;
@@ -110,18 +110,18 @@ export class Firework {
   }
   
   public draw(ctx: CanvasRenderingContext2D): CanvasRenderingContext2D {
-    var coordRand = (rand(1, 3) - 1);
+    let coordRand: number = (rand(1, 3) - 1);
     ctx.beginPath();
     ctx.moveTo(Math.round(this.coordLast[coordRand].x), Math.round(this.coordLast[coordRand].y));
     ctx.lineTo(Math.round(this.x), Math.round(this.y));
     ctx.closePath();
-    ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
+    ctx.strokeStyle = `hsla(${this.hue}, 100%, ${this.brightness}%, '${this.alpha})`;
     ctx.stroke();
     
     if (this.showTarget) {
       ctx.save();
       ctx.beginPath();
-      ctx.arc(Math.round(this.targetX), Math.round(this.targetY), this.targetRadius, 0, Math.PI * 2, false)
+      ctx.arc(Math.round(this.targetX), Math.round(this.targetY), this.targetRadius, 0, Math.PI * 2, false);
       ctx.closePath();
       ctx.lineWidth = 1;
       ctx.stroke();
@@ -134,7 +134,7 @@ export class Firework {
       ctx.rotate(this.shockwaveAngle);
       ctx.beginPath();
       ctx.arc(0, 0, 1 * (this.speed / 5), 0, Math.PI, true);
-      ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + rand(25, 60) / 100 + ')';
+      ctx.strokeStyle = `hsla(${this.hue}, 100%, ${this.brightness}%, ${rand(25, 60) / 100})`;
       ctx.lineWidth = this.lineWidth;
       ctx.stroke();
       ctx.restore();

@@ -29,14 +29,14 @@ export class ForAnyOrder implements DoCheck {
               private viewContainer: ViewContainerRef) {
   }
   
-  set forAnyOrderOf(coll: any) {
+  public set forAnyOrderOf(coll: any) {
     this.collection = coll;
     if (coll && !this.differ) {
       this.differ = this.differs.find(coll).create(this.changeDetector);
     }
   }
   
-  ngDoCheck() {
+  public ngDoCheck() {
     if (this.differ) {
       const changes = this.differ.diff(this.collection);
       if (changes) {

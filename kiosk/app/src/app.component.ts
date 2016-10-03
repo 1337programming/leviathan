@@ -20,17 +20,17 @@ export class AppComponent {
     
   }
   
-  onWindowResize() {
+  private onWindowResize() {
     this.size.width = window.innerWidth;
     this.size.height = window.innerHeight;
   }
   
-  getLoadProgress() {
+  private getLoadProgress() {
     const bfrCount = this.bufferLoaded ? 1 : 0;
     return 101;
   }
   
-  isLoading() {
+  private isLoading() {
     return this.getLoadProgress() < 100;
   }
 }

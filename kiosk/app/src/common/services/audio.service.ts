@@ -34,16 +34,16 @@ export class Audio {
       source.connect(pan);
       pan.connect(this.compressor);
       source.start(0);
-  
+      
       return () => {
         source.stop(0);
         source.disconnect();
         pan.disconnect();
-      }
+      };
     } else {
       return () => {
         console.log('Audio is not supported');
-      }
+      };
     }
   }
   
@@ -75,7 +75,7 @@ export class Audio {
     node.onaudioprocess = (e) => {
       let output: Float32Array = e.outputBuffer.getChannelData(0);
       for (let i: number = 0; i < 4096; i++) {
-        var white = Math.random() * 2 - 1;
+        let white: number = Math.random() * 2 - 1;
         output[i] = (lastOut + (0.02 * white)) / 1.02;
         lastOut = output[i];
         output[i] *= 3.5; // (roughly) compensate for gain

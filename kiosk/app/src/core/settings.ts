@@ -1,5 +1,5 @@
 // WEBPACK BUILD TIME VARIABLES
-declare let WEBPACK_PROD:boolean;
+declare let WEBPACK_PROD: boolean;
 
 
 export const SETTINGS = {

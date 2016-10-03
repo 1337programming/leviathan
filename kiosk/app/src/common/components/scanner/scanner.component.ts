@@ -12,7 +12,7 @@ let style = require('!!raw!sass!./views/scanner.scss');
 })
 export class ScannerComponent implements OnInit {
   
-  constructor(private authService:AuthService, private router:Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
   
   public ngOnInit() {

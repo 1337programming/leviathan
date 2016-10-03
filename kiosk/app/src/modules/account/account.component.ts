@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Message} from 'primeng/primeng';
+import {HelpComponent} from '../../common/components/help/help.component';
 
 let style = require('!!raw!sass!./views/account.scss');
 let template = require('./views/account.html');
@@ -11,15 +12,15 @@ let template = require('./views/account.html');
 })
 export class AccountComponent {
   
+  @ViewChild(HelpComponent) private help: HelpComponent;
   private msgs: Array<Message>;
   
   constructor() {
     this.msgs = [];
   }
   
-  private onDisabled(item: string) {
-    this.msgs.push({severity: 'warn', summary: 'Flow is not available', detail: `Action '${item}' is not 
-    available at this time`});
+  private callHelp(): void {
+    this.help.showDialog();
   }
   
 }
