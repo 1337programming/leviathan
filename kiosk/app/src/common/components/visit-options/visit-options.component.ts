@@ -48,4 +48,8 @@ export class VisitOptionsComponent {
     }
   }
   
+  private toggleCanvas() {
+    this.hideCanvas = !this.hideCanvas;
+  }
+  
 }

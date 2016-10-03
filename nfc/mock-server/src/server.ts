@@ -22,7 +22,7 @@ const CONFIG = require(path.resolve('../../config.json')).nfc.server_config;
 // Init Environment Variables
 let streamEmitter:StreamEmitter = new StreamEmitter();
 let socketServer:SocketServer = new SocketServer(io, streamEmitter);
-let serialFeed:SerialFeed = new SerialFeed(streamEmitter);
+//let serialFeed:SerialFeed = new SerialFeed(streamEmitter);
 let Router = DefineProxies(streamEmitter);
 let AuthInstance = new Authentication(CONFIG.port);
 
@@ -35,12 +35,15 @@ app.use('/api', Router); // Set REST API Router
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('src/public/index.html'));
 });
+app.get('/homer', (req, res) => {
+  res.sendFile(path.resolve('src/public/homer.html'));
+});
 
 // Run Scanner
-serialFeed.run();
+//serialFeed.run();
 
 let uidFeedSubscription = streamEmitter.listen('UID', (uid:string) => {
-  let options: CoreOptions = {
+  let options = {
     method: 'POST',
     json: true,
     url: '',

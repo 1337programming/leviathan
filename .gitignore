@@ -46,11 +46,14 @@ retail/**/*.js
 
 # Omit required js files
 !kiosk/webpack.config.js
+!kiosk/gulpfile.js
+!kiosk/test/*.js
 !kiosk/webpack/**/*.js
 !retail/webpack.config.js
 !retail/hooks/**/*.js
 [Tt]ypings*/
 [Pp]latforms*/
+[Rr]eport*/
 
 # Express server and Firebase key and cert
 service-account-credentials.json

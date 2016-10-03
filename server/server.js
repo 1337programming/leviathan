@@ -10,6 +10,7 @@ const logger = require('./src/util');
 var app = express();
 app.use(bodyParser.json());
 
+const Config = require(path.resolve(__dirname, '../config.json')).node_server.server_config;
 
 // Https server credentials
 var privateKey = fs.readFileSync(path.resolve(__dirname, './sslcert/server.key'), 'utf8');
@@ -20,12 +21,12 @@ var credentials = { key: privateKey, cert: certificate };
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8081, function () {
-    logger.log('Http Server is listening on port 8081');
+httpServer.listen(Config.http.port, function () {
+    logger.log('Http Server is listening on port ' + Config.http.port);
 });
 
-httpsServer.listen(8443, function () {
-    logger.log('Https Server is listening on port 8443');
+httpsServer.listen(Config.port, function () {
+    logger.log('Https Server is listening on port ' + Config.https.port);
 });
 
 // Root path -  serves index.html page
@@ -70,7 +71,7 @@ app.use(function (request, response, next) {
     next();
 });
 
-// Routers 
+// Routers
 const UID = require('./src/routers/uid-router');
 const User = require('./src/routers/user-router');
 const Auth = require('./src/routers/auth-router');

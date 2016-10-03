@@ -1,0 +1,319 @@
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        *,
+        *:after,
+        *:before {
+            box-sizing: border-box;
+        }
+
+        /* vars */
+        body {
+            background: #00aaff;
+        }
+        body .headContainer {
+            position: fixed;
+            bottom: 0;
+        }
+        body .headContainer .headOutline {
+            width: 90%;
+            height: 700px;
+            border: .2em solid black;
+            border-radius: 350px;
+            margin: 0 auto;
+        }
+        @media (min-width: 1000px) {
+            body .headContainer .headOutline {
+                border-width: 0.3em;
+            }
+        }
+        @media (min-width: 1500px) {
+            body .headContainer .headOutline {
+                border-width: 0.4em;
+            }
+        }
+        body .headContainer .headOutline .head {
+            width: 100%;
+            background-color: #f8a81d;
+            border-radius: 350px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        body .headContainer .headOutline .head .headColor {
+            width: 85%;
+            height: 800px;
+            margin: inherit;
+            border-radius: 400px;
+            background-color: #f7e308;
+        }
+        body .headContainer .earOutline {
+            width: 100%;
+            height: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 50px 50px 0 0;
+            border: 0.2em solid black;
+            border-bottom: none;
+            background-color: #f8a81d;
+        }
+        @media (min-width: 500px) {
+            body .headContainer .earOutline {
+                height: 15px;
+            }
+        }
+        @media (min-width: 700px) {
+            body .headContainer .earOutline {
+                height: 20px;
+            }
+        }
+        @media (min-width: 1000px) {
+            body .headContainer .earOutline {
+                height: 30px;
+                border-width: 0.3em;
+            }
+        }
+        @media (min-width: 1500px) {
+            body .headContainer .earOutline {
+                height: 40px;
+                border-width: 0.4em;
+            }
+        }
+        body .headContainer .earOutline .earColor {
+            width: 90%;
+            height: 10px;
+            position: relative;
+            margin: 0 auto;
+            z-index: 3;
+            border-radius: 50px 50px 0 0;
+            background-color: #f7e308;
+        }
+        @media (min-width: 500px) {
+            body .headContainer .earOutline .earColor {
+                height: 15px;
+            }
+        }
+        @media (min-width: 700px) {
+            body .headContainer .earOutline .earColor {
+                height: 20px;
+            }
+        }
+        @media (min-width: 1000px) {
+            body .headContainer .earOutline .earColor {
+                height: 30px;
+            }
+        }
+        @media (min-width: 1500px) {
+            body .headContainer .earOutline .earColor {
+                height: 40px;
+            }
+        }
+        body .headContainer .hair {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        body .headContainer .hair .hairLong {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            position: relative;
+            top: -15px;
+            left: calc(50% - 23px);
+            border: 0.2em solid black;
+        }
+        @media (min-width: 500px) {
+            body .headContainer .hair .hairLong {
+                width: 50px;
+                height: 50px;
+                top: -20px;
+                left: calc(50% - 25px);
+            }
+        }
+        @media (min-width: 700px) {
+            body .headContainer .hair .hairLong {
+                width: 70px;
+                height: 70px;
+                top: -25px;
+                left: calc(50% - 35px);
+            }
+        }
+        @media (min-width: 900px) {
+            body .headContainer .hair .hairLong {
+                width: 80px;
+                height: 80px;
+                top: -27px;
+                left: calc(50% - 40px);
+            }
+        }
+        @media (min-width: 1000px) {
+            body .headContainer .hair .hairLong {
+                width: 100px;
+                height: 100px;
+                top: -35px;
+                left: calc(50% - 50px);
+                border-width: 0.3em;
+            }
+        }
+        @media (min-width: 1300px) {
+            body .headContainer .hair .hairLong {
+                width: 120px;
+                height: 120px;
+                top: -40px;
+                left: calc(50% - 60px);
+            }
+        }
+        @media (min-width: 1500px) {
+            body .headContainer .hair .hairLong {
+                width: 140px;
+                height: 140px;
+                top: -50px;
+                left: calc(50% - 70px);
+                border-width: 0.4em;
+            }
+        }
+        @media (min-width: 1700px) {
+            body .headContainer .hair .hairLong {
+                width: 160px;
+                height: 160px;
+                top: -60px;
+                left: calc(50% - 80px);
+            }
+        }
+        body .headContainer .hair .hairLong .hairShort {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            position: relative;
+            top: 5px;
+            left: calc(50% - 9px);
+            z-index: 2;
+            border: 0.2em solid black;
+        }
+        @media (min-width: 500px) {
+            body .headContainer .hair .hairLong .hairShort {
+                top: 8px;
+            }
+        }
+        @media (min-width: 700px) {
+            body .headContainer .hair .hairLong .hairShort {
+                width: 30px;
+                height: 30px;
+                top: 11px;
+                left: calc(50% - 15px);
+            }
+        }
+        @media (min-width: 1000px) {
+            body .headContainer .hair .hairLong .hairShort {
+                width: 50px;
+                height: 50px;
+                top: 13px;
+                left: calc(50% - 25px);
+                border-width: 0.3em;
+            }
+        }
+        @media (min-width: 1300px) {
+            body .headContainer .hair .hairLong .hairShort {
+                width: 50px;
+                height: 50px;
+                top: 15px;
+                left: calc(50% - 25px);
+            }
+        }
+        @media (min-width: 1500px) {
+            body .headContainer .hair .hairLong .hairShort {
+                width: 60px;
+                height: 60px;
+                top: 17px;
+                left: calc(50% - 30px);
+                border-width: 0.4em;
+            }
+        }
+        @media (min-width: 1700px) {
+            body .headContainer .hair .hairLong .hairShort {
+                width: 70px;
+                height: 70px;
+                top: 20px;
+                left: calc(50% - 35px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="headContainer">
+    <!-- head -->
+    <div class="headOutline">
+        <div class="head">
+            <div class="headColor"></div>
+        </div>
+    </div>
+    <!-- ear -->
+    <div class="earOutline">
+        <div class="earColor"></div>
+    </div>
+    <!-- hair -->
+    <div class="hair">
+        <div class="hairLong">
+            <div class="hairShort"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var homer = {
+        /**
+         * init
+         * @desc initializes
+         */
+        init: function() {
+            homer.measuresHeadContainer();
+            homer.onResizePage();
+        },
+        /**
+         * measuresHeadContainer
+         * @desc sets the width and height of the container
+         */
+        measuresHeadContainer: function() {
+            var widthWindow = $(window).width(),
+                    widthHeadContainer = widthWindow / 3,
+                    heightHeadContainer = widthHeadContainer - (widthHeadContainer / 3),
+                    headContainer = $(".headContainer");
+
+            headContainer.css({
+                "width": widthHeadContainer,
+                "height": heightHeadContainer
+            });
+
+            homer.centerHeadContainer(widthWindow, widthHeadContainer, headContainer);
+        },
+        /**
+         * centerHeadContainer
+         * @desc centralize the container
+         */
+        centerHeadContainer: function(widthWindow, widthHeadContainer, headContainer) {
+            var posHeadContainer = (widthWindow / 2) - (widthHeadContainer / 2);
+
+            headContainer.css("left", posHeadContainer);
+        },
+        /**
+         * onResizePage
+         * @desc recalculate
+         */
+        onResizePage: function() {
+            $(window).resize(function() {
+                homer.measuresHeadContainer();
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        homer.init();
+    });
+</script>
+</body>
+</html>

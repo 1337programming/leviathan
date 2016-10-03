@@ -7,8 +7,14 @@
   },
   "node_server": {
     "server_config": {
-      "port": 8080,
-      "endpoint": "http://localhost"
+      "http": {
+        "port": 8081,
+        "endpoint": "http://localhost"
+      },
+      "https": {
+        "port": 8443,
+        "endpoint": "https://localhost"
+      }
     }
   }
 }

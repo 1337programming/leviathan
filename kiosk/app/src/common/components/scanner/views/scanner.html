@@ -1,10 +1,6 @@
 <div class="container fadein">
     <div class="row">
-        <h1 class="center">Scan your device</h1>
-    </div>
-
-    <div class="row">
-        <h4 class="description">Activate NFC to sign in</h4>
+        <h1 class="center">Let's find out who you are. Scan your phone to continue.</h1>
     </div>
 
     <div class="row">
@@ -13,7 +9,12 @@
         </div>
     </div>
 
-    <div class="row center manual-entry">
-        <button class="btn btn-primary" [routerLink]="['/identify/manual-entry']">Manual Entry</button>
+    <div class="row">
+        <div class="col-xs-12 buttons-container button-spacing">
+            <div class="button-box">
+                <button class="btn btn-primary" [routerLink]="['/identify/manual-entry']">Manual</button>
+            </div>
+        </div>
     </div>
+
 </div>

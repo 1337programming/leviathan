@@ -134,12 +134,19 @@ export class Fireworks implements AfterViewInit, OnInit {
     this.showTarget = false;
     while (initialLaunchCount--) {
       setTimeout(() => {
-        index = rand(0, this.rocketSamples.length - 1);
         let fInstance: FireworkI = {
-          audioStop: this.audio.play(this.rocketSamples[index]),
+          audioStop: this.audio.play(this.rocketSamples[rand(0, this.rocketSamples.length - 1)]),
           firework: new Firework(this.cw / 2, this.ch, rand(50, this.cw - 50), rand(50, this.ch / 2) - 50)
         };
-        this.fireworks.push(fInstance);
+        let fInstance2: FireworkI = {
+          audioStop: this.audio.play(this.rocketSamples[rand(0, this.rocketSamples.length - 1)]),
+          firework: new Firework(this.cw / 2, this.ch, rand(50, this.cw - 50), rand(50, this.ch / 2) - 50)
+        };
+        let fInstance3: FireworkI = {
+          audioStop: this.audio.play(this.rocketSamples[rand(0, this.rocketSamples.length - 1)]),
+          firework: new Firework(this.cw / 2, this.ch, rand(50, this.cw - 50), rand(50, this.ch / 2) - 50)
+        };
+        this.fireworks.push(fInstance, fInstance2, fInstance3);
       }, initialLaunchCount * delay);
     }
   }

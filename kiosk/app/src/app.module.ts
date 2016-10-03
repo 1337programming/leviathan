@@ -8,6 +8,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AddFundsModule} from './modules/add-funds/add-funds.module';
 import {AccountModule} from './modules/account/account.module';
 import {GrowlModule} from 'primeng/primeng';
+import {QueueModule} from './modules/queue/queue.module';
 
 // Components
 import {AppComponent} from './app.component';
@@ -28,22 +29,25 @@ import {Samples} from './common/services/samples.service';
 import {Random} from './common/services/random.service';
 import {Audio} from './common/services/audio.service';
 import {AuthService} from './common/services/auth.service';
-//Gaurd
+import {NotFoundComponent} from './common/components/404/404.component';
 
 @NgModule({
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, GrowlModule, AddFundsModule, AccountModule,
-    routing
+    QueueModule, routing
   ],
   declarations: [AppComponent, HeaderComponent, FooterComponent, ManualEntryComponent, ScannerComponent, HomeComponent,
-    VisitOptionsComponent, Fireworks],
+    VisitOptionsComponent, Fireworks, NotFoundComponent],
   providers: [
     AuthService,
     appRoutingProviders, // AuthGuard
     Random,
     Samples,
     Audio,
-    {provide: 'audioContext', useValue: new (window['AudioContext'] || window['webkitAudioContext'] || AudioContextMock)},
+    {
+      provide: 'audioContext',
+      useValue: new (window['AudioContext'] || window['webkitAudioContext'] || AudioContextMock)
+    },
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

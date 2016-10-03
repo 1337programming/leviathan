@@ -5,6 +5,7 @@ import {HomeComponent} from './common/components/home/home.component';
 import {ScannerComponent} from './common/components/scanner/scanner.component';
 import {ManualEntryComponent} from './common/components/manual-entry/manual-entry.component';
 import {AuthGuard} from './common/services/auth-guard.service';
+import {QueueComponent} from './common/components/queue/queue.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
