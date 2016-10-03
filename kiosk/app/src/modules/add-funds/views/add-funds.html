@@ -1,21 +1,11 @@
-<div class="container margin-top">
+<div class="container margin-top fadein">
     <div class="row spacing">
         <div class="col-xs-12 center">
             <h2>Current Funds</h2>
         </div>
     </div>
 
-    <div class="row spacing">
-        <div class="col-xs-12 center">
-            <h2 class="price-text n1"><sup class="n2">$</sup>831<sup class="n2">38</sup></h2>
-        </div>
-    </div>
-
-    <div class="row spacing">
-        <div class="col-xs-12 center">
-            <h2>Insert cash or credit card</h2>
-        </div>
-    </div>
+    <funds #funds (loaded)="fundsLoaded($event)"></funds>
 
     <div class="row spacing">
         <div class="col-xs-12 buttons-container button-spacing">
@@ -23,7 +13,7 @@
                 <button class="btn btn-secondary" (click)="callHelp()">Help</button>
             </div>
             <div class="button-box">
-                <button class="btn btn-primary" [routerLink]="['/add-funds/confirmation']">Done</button>
+                <button class="btn btn-primary" [class.disabled]="!loaded" [disabled]="!loaded" [routerLink]="['/add-funds/confirmation']">Done</button>
             </div>
         </div>
     </div>

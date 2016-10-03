@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener} from '@angular/core';
-import {MASTER, BuildCTX} from './helpers/master';
+import {MASTER} from './helpers/master';
 import {rand, detectmobile} from './helpers/helpers';
 import {Firework} from './classes/firework';
 import {Particle} from './classes/particle';

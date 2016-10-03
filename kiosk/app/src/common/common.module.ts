@@ -16,6 +16,7 @@ import {LoadingIndicator} from './components/loading-indicator/loading-indicator
 import {ManualEntryComponent} from './components/manual-entry/manual-entry.component';
 import {ScannerComponent} from './components/scanner/scanner.component';
 import {VisitOptionsComponent} from './components/visit-options/visit-options.component';
+import {CompleteComponent} from './components/complete/complete.component';
 
 // Directives
 import {ForAnyOrder} from './directives/for-any-order.directive';
@@ -36,7 +37,7 @@ import {routing, appRoutingProviders} from './app.router';
     CommonModule, ReactiveFormsModule, FormsModule, GrowlModule, DialogModule, routing
   ],
   declarations: [NotFoundComponent, Fireworks, FooterComponent, HeaderComponent, HelpComponent, HomeComponent,
-    LoadingIndicator, ManualEntryComponent, ScannerComponent, VisitOptionsComponent, ForAnyOrder],
+    LoadingIndicator, ManualEntryComponent, ScannerComponent, VisitOptionsComponent, CompleteComponent, ForAnyOrder],
   providers: [Audio, AuthService, AuthGuard, Random, Samples,
     appRoutingProviders,
     {provide: LocationStrategy, useClass: HashLocationStrategy},

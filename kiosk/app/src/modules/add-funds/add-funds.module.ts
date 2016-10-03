@@ -9,6 +9,7 @@ import {KioskCommonModule} from '../../common/common.module';
 // Components
 import {AddFundsComponent} from './add-funds.component';
 import {ConfirmationComponent} from './components/confirmation/confirmation.component';
+import {FundsComponent} from './components/funds/funds.component';
 
 // Directives
 
@@ -21,7 +22,7 @@ import {routing} from './add-funds.router';
   imports: [
     CommonModule, ReactiveFormsModule, FormsModule, routing, DialogModule, KioskCommonModule
   ],
-  declarations: [AddFundsComponent, ConfirmationComponent],
+  declarations: [AddFundsComponent, ConfirmationComponent, FundsComponent],
   providers: []
 })
 export class AddFundsModule {

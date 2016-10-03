@@ -1,0 +1,17 @@
+.button-spacing {
+  margin-top: 150px;
+}
+
+.yahoo {
+  animation: fun 2s;
+
+}
+@keyframes fun {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(900deg) scale(4);
+  }
+}
+

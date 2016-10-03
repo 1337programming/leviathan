@@ -1,6 +1,6 @@
 <p-growl [value]="msgs"></p-growl>
 
-<div class="container margin-top">
+<div class="container margin-top fadein">
 
     <div id="confirmation"><!-- confirmation -->
 
@@ -40,7 +40,7 @@
                 <button class="btn btn-secondary" (click)="callHelp()">Help</button>
             </div>
             <div class="button-box">
-                <button class="btn btn-primary">Done</button>
+                <button class="btn btn-primary" [routerLink]="['/complete']">Done</button>
             </div>
         </div>
     </div>

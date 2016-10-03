@@ -15,11 +15,11 @@
   }
 }
 
-$bg: #171a1e;
+$bg: #F0F0F0;
 $fg: lighten($bg, 60%);
 
-$hi: #39a086;
-$hib: #24d6a6;
+$hi: #BA0060;
+$hib: #E20074;
 
 $error: #d84966;
 $warn: #b27b1c;
@@ -79,7 +79,8 @@ input {
 
     @include phold() {
 
-      color: lighten($bg, 13%);
+
+      color: #333333;
       line-height: 1.2;
       transition: all 0.2s ease;
 

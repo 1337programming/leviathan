@@ -12,7 +12,7 @@
                 <input id="username" name="username" type="text" placeholder="John Smith" required minlength="2">
 
                 <label for="password" class="vhide">Phone Number</label>
-                <input id="password" name="password" type="text" placeholder="333-444-6789" required minlength="6">
+                <input class="form-control" id="password" name="password" type="text" placeholder="333-444-6789" required minlength="6">
 
                 <label for="password" class="vhide">Password</label>
                 <input id="password" name="password" type="text" placeholder="****" required minlength="6">
@@ -32,6 +32,9 @@
     <div class="row">
         <div class="row center scan">
             <button class="btn btn-primary" [routerLink]="['/identify/scan']">Scan</button>
+            <br>
+            <br>
+            <h3>Device</h3>
         </div>
     </div>
 </div>

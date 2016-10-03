@@ -12,7 +12,9 @@ let style = require('!!raw!sass!./views/help.scss');
 export class HelpComponent implements OnInit {
   
   private display: boolean;
+  private modalWidth:number;
   constructor(private router: Router) {
+    this.modalWidth = 600; // 600 px
     this.display = false;
   }
   
@@ -24,7 +26,15 @@ export class HelpComponent implements OnInit {
   }
   
   private close() {
-    this.display = false;
+    let interval = setInterval(() => {
+      this.modalWidth = this.modalWidth - (Math.floor(Math.random() * 15) + 15);
+      if(this.modalWidth < 0) {
+        clearInterval(interval);
+        this.display = false;
+        this.modalWidth = 600;
+      }
+    }, 20);
+    //this.display = false;
   }
   
   private addToQueue(reason:string) {
