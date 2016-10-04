@@ -49,6 +49,7 @@ retail/**/*.js
 !kiosk/gulpfile.js
 !kiosk/test/*.js
 !kiosk/webpack/**/*.js
+!kiosk/app/src/webkit-audio-context-monkeypatch.js
 !retail/webpack.config.js
 !retail/hooks/**/*.js
 [Tt]ypings*/
