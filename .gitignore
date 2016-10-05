@@ -55,6 +55,7 @@ retail/**/*.js
 [Tt]ypings*/
 [Pp]latforms*/
 [Rr]eport*/
+[Dd]ist*/
 
 # Express server and Firebase key and cert
 service-account-credentials.json

@@ -79,9 +79,24 @@ export class AuthService {
   private handleLoginError(error: any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
+
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+
+
     console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
+
+    var errorDisplay, status = error.status ? error.status : 999;
+    if (status === 400) {
+      errorDisplay = 'Invalid submission for Login'
+    } else if (status === 403) {
+      errorDisplay = 'Invalid email or password';
+    } else if (status === 404) {
+      errorDisplay = 'Email address not registered';
+    } else {
+      errorDisplay = 'Oops! Server Error';
+    }
+
+    return Observable.throw(errorDisplay);
   }
 }

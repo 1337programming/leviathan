@@ -1,5 +1,5 @@
 <div class="container fadein">
-
+<p-growl [value]="msgs"></p-growl>
     <div class="row m-t-xxl spacing">
         <h1 class="center spacing">Let's find out who you are.</h1>
         <form action="#">
@@ -23,8 +23,7 @@
                 <label for="remember">
                     <i class="octicon octicon-check"></i> Allow SMS Notifications
                 </label>
-
-                <button  class="signin" (click)="signIn()">Sign in</button>
+                <button class="signin" (click)="signIn()">Sign in</button>
             </fieldset>
 
         </form>
