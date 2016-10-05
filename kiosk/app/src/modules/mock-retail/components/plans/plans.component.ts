@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QueueService} from '../../services/queue.service';
 import {Plans, Plan} from './plans-mock';
-import {User} from '../../classes/users';
+import {User} from 'app/src/common/interfaces/firebase.interface';
 
 let template = require('./views/plans.html');
 let style = require('!!raw!sass!./views/plans.scss');

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QueueService} from '../../services/queue.service';
-import {User} from '../../classes/users';
-import {queue} from 'rxjs/scheduler/queue';
+import {User} from 'app/src/common/interfaces/firebase.interface';
 
 let template = require('./views/queue-select.html');
 let style = require('!!raw!sass!./views/queue-select.scss');
