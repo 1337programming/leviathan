@@ -10,6 +10,7 @@ import {AccountModule} from './modules/account/account.module';
 import {QueueModule} from './modules/queue/queue.module';
 import {GrowlModule, DialogModule} from 'primeng/primeng';
 import {KioskCommonModule} from './common/common.module';
+import {MockRetailModule} from './modules/mock-retail/mock-retail.module';
 
 // Components
 import {AppComponent} from './app.component';
@@ -22,7 +23,7 @@ import {routing, appRoutingProviders} from './common/app.router';
 @NgModule({
   imports: [
     BrowserModule, ReactiveFormsModule, FormsModule, HttpModule, GrowlModule, DialogModule, KioskCommonModule,
-    AddFundsModule, AccountModule, QueueModule, routing
+    AddFundsModule, AccountModule, QueueModule, MockRetailModule, routing
   ],
   declarations: [AppComponent],
   providers: [

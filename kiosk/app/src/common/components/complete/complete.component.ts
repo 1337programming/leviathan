@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 let template = require('./views/complete.html');
 let style = require('!!raw!sass!./views/complete.scss');
@@ -15,7 +16,7 @@ export class CompleteComponent implements OnInit {
   private message: string;
   private yahoo:boolean;
   
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService:AuthService) {
     this.yahoo = false;
   }
   
@@ -39,6 +40,7 @@ export class CompleteComponent implements OnInit {
     if (!this.processing) {
       this.processing = true;
       this.message = 'See us again soon!';
+      this.authService.deleteToken();
       setTimeout(()=> {
         this.router.navigate(['/home']);
       }, 1500);

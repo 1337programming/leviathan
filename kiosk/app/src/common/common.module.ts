@@ -46,7 +46,7 @@ import {routing, appRoutingProviders} from './app.router';
       useValue: new (window['AudioContext'] || window['webkitAudioContext'] || AudioContextMock)
     },
   ],
-  exports: [HelpComponent, ForAnyOrder, LoadingIndicator]
+  exports: [HelpComponent, ForAnyOrder, LoadingIndicator, HeaderComponent, FooterComponent]
 })
 export class KioskCommonModule {
 }

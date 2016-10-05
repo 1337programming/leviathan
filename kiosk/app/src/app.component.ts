@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'kiosk',
   template: `
         <div (window:resize)="onWindowResize()">
+            <header-bar></header-bar>
             <router-outlet></router-outlet>
         </div>
             `
