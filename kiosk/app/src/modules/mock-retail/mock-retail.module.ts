@@ -11,6 +11,7 @@ import {QueueSelect} from './components/queue-select/queue-select.component';
 import {Arrow} from './components/arrow/arrow.component';
 import {CallComponent} from './components/call/call.component';
 import {PlansComponent} from './components/plans/plans.component';
+import {ReviewComponent} from './components/review/review.component';
 
 // Directives
 
@@ -24,7 +25,7 @@ import {QueueService} from './services/queue.service';
   imports: [
     CommonModule, ReactiveFormsModule, FormsModule, DialogModule, routing
   ],
-  declarations: [QueueComponent, QueueSelect, Arrow, CallComponent, PlansComponent],
+  declarations: [QueueComponent, QueueSelect, Arrow, CallComponent, PlansComponent, ReviewComponent],
   providers: [QueueService]
 })
 export class MockRetailModule {

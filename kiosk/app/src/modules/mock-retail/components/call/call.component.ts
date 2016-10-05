@@ -13,6 +13,7 @@ let style = require('!!raw!sass!./views/call.scss');
 export class CallComponent implements OnInit {
   
   @Input() protected display:boolean;
+  @Input() protected name:string;
   @Output() protected close:EventEmitter<{}>;
   
   constructor(private router: Router, private queueService:QueueService) {

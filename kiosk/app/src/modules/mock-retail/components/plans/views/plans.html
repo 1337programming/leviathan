@@ -3,7 +3,7 @@
         <div class="col-xs-9 m-t-lg" *ngFor="let plan of plans">
             <label class="form-label">
 						<span class="co-radio">
-							<input checked="" name="co-radio_sample" (click)="selectPlan(plan)" type="radio">
+							<input checked="" name="co-radio_sample" (click)="selectPlan(plan)" [(ngModel)]="user.plan" type="radio">
 							<span class="radio"></span>
 						</span>
                 <p class="option-description">{{plan}}</p>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="button-box">
-                <button class="btn btn-primary" [routerLink]="['/retail/queue']">Select</button>
+                <button class="btn btn-primary" [routerLink]="['/retail/review']">Select</button>
             </div>
         </div>
     </div>

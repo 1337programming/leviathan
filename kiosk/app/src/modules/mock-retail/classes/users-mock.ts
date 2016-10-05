@@ -26,4 +26,4 @@ user5.reason = 'My bill is too high';
 user5.info = 'Since my family started playing Pokemon Go my bill has skyrocketed.';
 user5.plan = '$100/mo - Family plan, 4 lines, 5GB shared data $93 in data overcharges last month';
 
-export const MockUsers:Array<User> = [user1, user2, user3, user4];
+export const MockUsers:Array<User> = [user1, user2, user3, user4, user5];

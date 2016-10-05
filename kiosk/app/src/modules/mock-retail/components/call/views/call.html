@@ -1,9 +1,9 @@
-<p-dialog header="Help" [(visible)]="display" [draggable]="false" [responsive]="true" [resizable]="false" [width]="600" modal="modal" showEffect="fade">
+<p-dialog header="Call" [(visible)]="display" [draggable]="false" [responsive]="true" [resizable]="false" [height]="700" [width]="600" modal="modal" showEffect="fade">
 
-    <div class="form-group">
-        <label for="exampleTextarea">So we can assist you better,
-            please tell us a bit more about your reason for visiting:</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="reason"></textarea>
+    <h3>Calling {{name}}...</h3>
+
+    <div class="center">
+        <span class='pulse-button'><i class="fa fa-phone fa-3x text-success"></i></span>
     </div>
 
     <footer>
