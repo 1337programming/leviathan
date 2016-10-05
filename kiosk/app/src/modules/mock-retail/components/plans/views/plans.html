@@ -1,23 +1,27 @@
 <div class="container fadein">
-    <div class="row">
+    <div class="row spacing">
+        <h1>Select a new plan</h1>
+    </div>
+
+    <div class="row spacing">
         <div class="col-xs-9 m-t-lg" *ngFor="let plan of plans">
             <label class="form-label">
 						<span class="co-radio">
-							<input checked="" name="co-radio_sample" (click)="selectPlan(plan)" [(ngModel)]="user.plan" type="radio">
+							<input checked="" name="co-radio_sample" (click)="selectPlan(plan)" type="radio">
 							<span class="radio"></span>
 						</span>
                 <p class="option-description">{{plan}}</p>
             </label>
         </div>
     </div>
-    <div class="row">
+    <div class="row spacing">
         <div class="col-xs-12 buttons-container button-spacing">
             <div class="button-box">
                 <button class="btn btn-secondary" [routerLink]="['/retail/queue']">Cancel</button>
             </div>
 
             <div class="button-box">
-                <button class="btn btn-primary" [routerLink]="['/retail/review']">Select</button>
+                <button class="btn btn-primary" (click)="finish()">Done</button>
             </div>
         </div>
     </div>

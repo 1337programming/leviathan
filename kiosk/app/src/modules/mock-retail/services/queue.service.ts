@@ -21,7 +21,11 @@ export class QueueService {
   }
   
   public getUser():User {
-    return this.selectedUser;
+    if (!this.selectedUser) {
+      return this.queue[0];
+    } else {
+      return this.selectedUser;
+    }
   }
   
   public getQueue():Array<User> {

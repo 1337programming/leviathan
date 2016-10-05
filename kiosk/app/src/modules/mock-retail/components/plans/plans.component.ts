@@ -25,6 +25,11 @@ export class PlansComponent implements OnInit {
   }
   
   private selectPlan(plan:Plan) {
-    this.queueService.setNewPlan(plan);
+    this.user.plan = plan;
+  }
+  
+  private finish() {
+    this.queueService.setNewPlan(this.user.plan);
+    this.router.navigate(['/retail/review']);
   }
 }
