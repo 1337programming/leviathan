@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Message} from 'primeng/primeng';
+import { Observable } from 'rxjs/RX'
+
 
 import {AuthService} from '../../services/auth.service';
 
@@ -15,8 +18,10 @@ export class ManualEntryComponent implements OnInit {
 
   private email: string;
   private password: string;
+  private msgs: Array<Message>;
 
   constructor(private _authService: AuthService, private _router: Router) {
+    this.msgs = [];
   }
 
   public ngOnInit() {
@@ -27,16 +32,14 @@ export class ManualEntryComponent implements OnInit {
     this._authService.authenticate(this.email, this.password)
       .subscribe(
       (token) => {
-        if (token) {
-          this._authService.setToken(token);
-          this._router.navigate(['account']);
-        } else {
-          // TODO: Show invalid login when failed
-        }
+        this._authService.setToken(token);
+        this._router.navigate(['account']);
       },
       (err) => {
-        console.log(err);
-        // TODO: Show error if loging service fails
+        this.msgs.push({
+          severity: 'error', summary: err
+        });
+        return Observable.of(err.message);
       });
   }
 
