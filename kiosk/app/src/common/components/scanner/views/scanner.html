@@ -1,21 +1,19 @@
 <div class="container fadein">
-    <div class="row">
-        <h1 class="center">Let's find out who you are. Scan your phone to continue.</h1>
+    <div class="row spacing">
+        <h1 class="center">Let's find out who you are.</h1>
+        <h2>Scan your phone to continue.</h2>
     </div>
 
-    <div class="row">
+    <div class="row spacing">
         <div class="center">
             <span class='pulse-button' (click)="signIn()">Scan</span>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row spacing">
         <div class="col-xs-12 buttons-container button-spacing">
             <div class="button-box">
-                <button class="btn btn-primary" [routerLink]="['/identify/manual-entry']">Manual</button>
-                <br>
-                <br>
-                <h3>Entry</h3>
+                <button class="btn btn-secondary" [routerLink]="['/identify/manual-entry']">Manual</button>
             </div>
         </div>
     </div>

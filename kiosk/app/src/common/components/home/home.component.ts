@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   }
   
   public ngOnInit() {
-    this.authService.deleteToken();
   }
   
   private enterKiosk() {

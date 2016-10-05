@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router, CanActivate} from '@angular/router';
 
 import {AuthService} from './auth.service';
+import {SETTINGS} from '../../core/settings';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -9,7 +10,7 @@ export class AuthGuard implements CanActivate {
   }
   
   public canActivate(): boolean {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn() || !SETTINGS.PROD) {
       console.log('Logged In');
       return true;
     } else {
