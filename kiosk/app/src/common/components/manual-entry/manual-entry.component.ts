@@ -13,9 +13,8 @@ let style = require('!!raw!sass!./views/manual-entry.scss');
 })
 export class ManualEntryComponent implements OnInit {
 
-  email: string;
-  password: string
-  failed_login: boolean = false;
+  private email: string;
+  private password: string;
 
   constructor(private _authService: AuthService, private _router: Router) {
   }
@@ -25,16 +24,20 @@ export class ManualEntryComponent implements OnInit {
 
   private signIn() {
 
-    this._authService.authenticate(this.email, this.password).then(
+    this._authService.authenticate(this.email, this.password)
+      .subscribe(
       (token) => {
         if (token) {
           console.log(token);
           this._authService.setToken(token);
           this._router.navigate(['account']);
+        } else {
+          // TODO: Show invalid login when failed
         }
       },
-      (error) => {
-
+      (err) => {
+        console.log(err);
+        // TODO: Show error if loging service fails
       });
   }
 

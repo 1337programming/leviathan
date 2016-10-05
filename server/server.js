@@ -64,6 +64,16 @@ httpsIO.on('connection', function (socket) {
     });
 });
 
+
+
+// Allow CORS
+app.use(function (request, response, next) {
+    response.header('Access-Control-Allow-Origin', `http://127.0.0.1:9000`);
+    response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    response.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 // Pass sockets to routes for emitting signal
 app.use(function (request, response, next) {
     request.httpIO = httpIO;
