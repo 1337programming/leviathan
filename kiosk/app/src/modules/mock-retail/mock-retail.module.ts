@@ -20,10 +20,11 @@ import {routing} from './mock-retail.router';
 
 // Services
 import {QueueService} from './services/queue.service';
+import {KioskCommonModule} from '../../common/common.module';
 
 @NgModule({
   imports: [
-    CommonModule, ReactiveFormsModule, FormsModule, DialogModule, routing
+    CommonModule, ReactiveFormsModule, FormsModule, DialogModule, KioskCommonModule, routing
   ],
   declarations: [QueueComponent, QueueSelect, Arrow, CallComponent, PlansComponent, ReviewComponent],
   providers: [QueueService]

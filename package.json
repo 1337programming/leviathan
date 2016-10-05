@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/1337programming/leviathan/issues"
   },
-  "homepage": "https://github.com/1337programming/leviathan"
+  "homepage": "https://github.com/1337programming/leviathan",
+  "dependencies": {
+    "firebase": "^3.4.1"
+  }
 }

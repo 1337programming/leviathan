@@ -14,9 +14,10 @@ let style = require('!!raw!sass!./views/queue-select.scss');
 })
 export class QueueSelect implements OnInit {
   
-  private user:User;
-  private display:boolean;
-  constructor(private router: Router, private queueService:QueueService) {
+  private user: User;
+  private display: boolean;
+  
+  constructor(private router: Router, private queueService: QueueService) {
     this.display = false;
   }
   
@@ -33,7 +34,7 @@ export class QueueSelect implements OnInit {
     this.display = true;
     setTimeout(() => {
       this.router.navigate(['/retail/plans'])
-    }, 8000);
+    }, 5000);
   }
   
 }

@@ -11,7 +11,8 @@ let style = require('!!raw!sass!./views/loading-indicator.scss');
 export class LoadingIndicator {
   @Input() progress = 0;
   
-  constructor(private sanitizer:DomSanitizer){};
+  constructor(private sanitizer: DomSanitizer) {
+  };
   
   private getTransform1() {
     const rotation = Math.min(-180 + (this.progress / 50) * 180, 0);

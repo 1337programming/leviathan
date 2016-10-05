@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
+import {FirebaseService} from './common/services/firebase.service';
 
 @Component({
   selector: 'kiosk',
   template: `
         <div (window:resize)="onWindowResize()">
-            <header-bar></header-bar>
             <router-outlet></router-outlet>
         </div>
             `
@@ -14,7 +14,7 @@ export class AppComponent {
   public bufferLoaded = false;
   public size: any;
   
-  constructor() {
+  constructor(private firebaseService: FirebaseService) {
     this.size = {};
     this.onWindowResize();
     setTimeout(() => this.bufferLoaded = true, 4200);

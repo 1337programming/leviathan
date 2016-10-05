@@ -1,50 +1,49 @@
 import {Injectable} from '@angular/core';
-import {User} from '../classes/users';
-import {MockUsers} from '../classes/users-mock';
+import {User} from 'app/src/common/interfaces/firebase.interface';
 import {Plan} from '../components/plans/plans-mock';
+import {FirebaseService} from 'app/src/common/services/firebase.service';
 
 @Injectable()
 export class QueueService {
   
-  private selectedUser:User;
-  private queue:Array<User>;
-  private previousPlan:Plan;
-  private newPlan:Plan;
+  private selectedUser: User;
+  private queue: Array<User>;
+  private previousPlan: Plan;
+  private newPlan: Plan;
   
-  constructor() {
-    this.queue = MockUsers;
+  constructor(private firebaseService:FirebaseService) {
   }
   
-  public setUser(user:User):void {
+  public setUser(user: User): void {
     this.selectedUser = user;
     this.setPreviousPlan(user.plan);
   }
   
-  public getUser():User {
+  public getUser(): User {
     if (!this.selectedUser) {
-      return this.queue[0];
+      return this.getQueue()[0];
     } else {
       return this.selectedUser;
     }
   }
   
-  public getQueue():Array<User> {
-    return this.queue;
+  public getQueue(): Array<User> {
+    return this.firebaseService.getQueue();
   }
   
-  public setPreviousPlan(plan:Plan) {
+  public setPreviousPlan(plan: Plan) {
     this.previousPlan = plan;
   }
   
-  public getPreviousPlan():Plan {
+  public getPreviousPlan(): Plan {
     return this.previousPlan;
   }
   
-  public setNewPlan(plan:Plan) {
+  public setNewPlan(plan: Plan) {
     this.newPlan = plan;
   }
   
-  public getNewPlan():Plan {
+  public getNewPlan(): Plan {
     return this.newPlan;
   }
 }

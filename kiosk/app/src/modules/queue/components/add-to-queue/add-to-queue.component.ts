@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../../common/services/auth.service';
 
 let template = require('./views/queue.html');
 let style = require('!!raw!sass!./views/queue.scss');
@@ -11,7 +12,7 @@ let style = require('!!raw!sass!./views/queue.scss');
 })
 export class QueueComponent implements OnInit {
   
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService:AuthService) {
   }
   
   public ngOnInit() {
@@ -19,6 +20,11 @@ export class QueueComponent implements OnInit {
   
   private cancel() {
     
+  }
+  
+  private exit() {
+    this.authService.deleteToken();
+    this.router.navigate(['/home']);
   }
   
 }

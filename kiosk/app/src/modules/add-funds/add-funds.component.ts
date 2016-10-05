@@ -1,7 +1,6 @@
 import {Component, ViewChild, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HelpComponent} from '../../common/components/help/help.component';
-import {FundsComponent} from './components/funds/funds.component';
 
 let style = require('!!raw!sass!./views/add-funds.scss');
 let template = require('./views/add-funds.html');

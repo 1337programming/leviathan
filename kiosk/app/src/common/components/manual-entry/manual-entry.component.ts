@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from 'app/src/common/services/auth.service';
 
 let template = require('./views/manual-entry.html');
 let style = require('!!raw!sass!./views/manual-entry.scss');
@@ -12,32 +11,32 @@ let style = require('!!raw!sass!./views/manual-entry.scss');
   styles: [style]
 })
 export class ManualEntryComponent implements OnInit {
-
+  
   private email: string;
   private password: string;
-
-  constructor(private _authService: AuthService, private _router: Router) {
+  
+  constructor(private authService: AuthService, private router: Router) {
   }
-
+  
   public ngOnInit() {
   }
-
+  
   private signIn() {
-
-    this._authService.authenticate(this.email, this.password)
+    
+    this.authService.authenticate(this.email, this.password)
       .subscribe(
-      (token) => {
-        if (token) {
-          this._authService.setToken(token);
-          this._router.navigate(['account']);
-        } else {
-          // TODO: Show invalid login when failed
-        }
-      },
-      (err) => {
-        console.log(err);
-        // TODO: Show error if loging service fails
-      });
+        (token) => {
+          if (token) {
+            this.authService.setToken(token);
+            this.router.navigate([`/${this.authService.getFlow()}`]);
+          } else {
+            // TODO: Show invalid login when failed
+          }
+        },
+        (err) => {
+          console.log(err);
+          // TODO: Show error if loging service fails
+        });
   }
-
+  
 }

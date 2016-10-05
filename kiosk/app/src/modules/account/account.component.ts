@@ -12,22 +12,22 @@ let template = require('./views/account.html');
   styles: [style]
 })
 export class AccountComponent {
-
+  
   private user: any;
-
+  
   @ViewChild(HelpComponent) private help: HelpComponent;
   private msgs: Array<Message>;
   
   constructor(private _accountService: AccountService) {
     this.msgs = [];
   }
-
-  ngOnInit(){
+  
+  ngOnInit() {
     this._accountService.getUser().subscribe(
-      (user) =>{
+      (user) => {
         this.user = user;
       },
-      (error) =>{
+      (error) => {
         console.log(error);
         // TODO: Show error if get user service fails
       });

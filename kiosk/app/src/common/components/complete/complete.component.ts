@@ -14,9 +14,9 @@ export class CompleteComponent implements OnInit {
   
   private processing: boolean;
   private message: string;
-  private yahoo:boolean;
+  private yahoo: boolean;
   
-  constructor(private router: Router, private authService:AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
     this.yahoo = false;
   }
   

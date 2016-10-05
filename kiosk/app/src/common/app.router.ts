@@ -12,11 +12,13 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'visit-options', component: VisitOptionsComponent},
   {path: 'complete', component: CompleteComponent},
-  {path: 'identify', children: [
+  {
+    path: 'identify', children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'scan', component: ScannerComponent},
     {path: 'manual-entry', component: ManualEntryComponent}
-  ]}
+  ]
+  }
 ];
 
 /**

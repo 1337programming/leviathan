@@ -31,6 +31,7 @@ import {AudioContextMock} from './mock/mock-audio-context';
 
 // Router
 import {routing, appRoutingProviders} from './app.router';
+import {FirebaseService} from './services/firebase.service';
 
 @NgModule({
   imports: [
@@ -39,7 +40,7 @@ import {routing, appRoutingProviders} from './app.router';
   declarations: [NotFoundComponent, Fireworks, FooterComponent, HeaderComponent, HelpComponent, HomeComponent,
     LoadingIndicator, ManualEntryComponent, ScannerComponent, VisitOptionsComponent, CompleteComponent, ForAnyOrder],
   providers: [Audio, AuthService, AuthGuard, Random, Samples,
-    appRoutingProviders,
+    appRoutingProviders, FirebaseService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: 'audioContext',

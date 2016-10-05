@@ -7,5 +7,5 @@ import '@angular/forms';
 import '@angular/http';
 import '@angular/router';
 import 'primeng/primeng';
-import 'rxjs/Rx';
+import 'rxjs';
 import './webkit-audio-context-monkeypatch';

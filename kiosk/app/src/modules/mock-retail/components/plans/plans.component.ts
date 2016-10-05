@@ -14,9 +14,10 @@ let style = require('!!raw!sass!./views/plans.scss');
 })
 export class PlansComponent implements OnInit {
   
-  private plans:Array<Plan>;
-  private user:User;
-  constructor(private router: Router, private queueService:QueueService) {
+  private plans: Array<Plan>;
+  private user: User;
+  
+  constructor(private router: Router, private queueService: QueueService) {
     this.plans = Plans;
   }
   
@@ -24,7 +25,7 @@ export class PlansComponent implements OnInit {
     this.user = this.queueService.getUser();
   }
   
-  private selectPlan(plan:Plan) {
+  private selectPlan(plan: Plan) {
     this.user.plan = plan;
   }
   

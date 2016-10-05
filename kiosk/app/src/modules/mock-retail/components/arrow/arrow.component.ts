@@ -10,9 +10,9 @@ let style = require('!!raw!sass!./views/arrow.scss');
 })
 export class Arrow implements OnInit {
   
-  @Input() protected name:string;
-  @Input() protected selected:string;
-  @Input() protected index:number;
+  @Input() protected name: string;
+  @Input() protected selected: string;
+  @Input() protected index: number;
   
   constructor() {
   }

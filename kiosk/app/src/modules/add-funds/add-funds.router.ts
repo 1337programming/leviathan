@@ -5,11 +5,13 @@ import {ConfirmationComponent} from './components/confirmation/confirmation.comp
 import {AuthGuard} from '../../common/services/auth-guard.service';
 
 const routes: Routes = [
-  {path: 'add-funds', canActivate: [AuthGuard], children: [
+  {
+    path: 'add-funds', canActivate: [AuthGuard], children: [
     {path: '', component: AddFundsComponent},
     {path: 'payment', component: AddFundsComponent},
     {path: 'confirmation', component: ConfirmationComponent}
-  ]}
+  ]
+  }
 ];
 
 /**

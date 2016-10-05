@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from 'app/src/common/services/auth.service';
 
 let template = require('./views/home.html');
 let stylesheet = require('!!raw!sass!./views/home.scss');

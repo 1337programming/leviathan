@@ -1,10 +1,13 @@
 <div class="container fadein">
     <h1>Customers in line</h1>
 
-    <div class="row">
+    <div class="row" *ngIf="users">
         <div class="selection-container">
             <arrow *ngFor="let user of users, let i=index" [name]="user.name" [index]="i + 1" [selected]="user.selected"
                    (click)="selectUser(user, i)"></arrow>
         </div>
+    </div>
+    <div class="row" *ngIf="!users">
+        <loading-indicator></loading-indicator>
     </div>
 </div>
