@@ -2,10 +2,16 @@
 
 <div class="container margin-top fadein">
 
-    <div id="confirmation"><!-- confirmation -->
+    <div id="confirmation">
 
         <div class="page-title gray-bg">
             <div class="container">
+                <div *ngIf="user">
+                    <h1 class="m-t-xl m-b-xl center">Hello {{user.firstname}} {{user.lastname}}!</h1>
+                </div>
+                <div *ngIf="!user">
+                    <loading-indicator></loading-indicator>
+                </div>
                 <h2 class="m-t-xl m-b-xl center">About your plan:</h2>
             </div>
         </div>

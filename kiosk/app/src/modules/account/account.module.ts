@@ -9,6 +9,7 @@ import {GrowlModule, DialogModule} from 'primeng/primeng';
 import {AccountComponent} from './account.component';
 import {AboutPlanComponent} from './components/about-plan/about-plan.component';
 import {UpdatePlanComponent} from './components/update-plan/update-plan.component';
+import {AccountService}  from './services/account.service'
 
 // Directives
 
@@ -23,7 +24,7 @@ import {KioskCommonModule} from '../../common/common.module';
     CommonModule, ReactiveFormsModule, FormsModule, GrowlModule, DialogModule, KioskCommonModule, routing
   ],
   declarations: [AccountComponent, AboutPlanComponent, UpdatePlanComponent],
-  providers: []
+  providers: [AccountService]
 })
 export class AccountModule {
 }

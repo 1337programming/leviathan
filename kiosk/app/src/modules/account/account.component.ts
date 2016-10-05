@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Message} from 'primeng/primeng';
 import {HelpComponent} from '../../common/components/help/help.component';
+import {AccountService} from './services/account.service';
 
 let style = require('!!raw!sass!./views/account.scss');
 let template = require('./views/account.html');
@@ -11,12 +12,25 @@ let template = require('./views/account.html');
   styles: [style]
 })
 export class AccountComponent {
-  
+
+  private user: any;
+
   @ViewChild(HelpComponent) private help: HelpComponent;
   private msgs: Array<Message>;
   
-  constructor() {
+  constructor(private _accountService: AccountService) {
     this.msgs = [];
+  }
+
+  ngOnInit(){
+    this._accountService.getUser().subscribe(
+      (user) =>{
+        this.user = user;
+      },
+      (error) =>{
+        console.log(error);
+        // TODO: Show error if get user service fails
+      });
   }
   
   private callHelp(): void {

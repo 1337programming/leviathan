@@ -28,7 +28,6 @@ export class ManualEntryComponent implements OnInit {
       .subscribe(
       (token) => {
         if (token) {
-          console.log(token);
           this._authService.setToken(token);
           this._router.navigate(['account']);
         } else {

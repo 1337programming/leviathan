@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/RX';
-import 'rxjs/add/operator/toPromise';
 
 const AUTH_URL: string = 'http://localhost:8081/auth/login';
 
@@ -9,7 +8,7 @@ const AUTH_URL: string = 'http://localhost:8081/auth/login';
 export class AuthService {
 
   private flow: string;
-  private token: string;
+  private token: any;
 
   constructor(private _http: Http) {
     this.flow = 'home';
@@ -35,6 +34,20 @@ export class AuthService {
 
   public setFlow(flow: string): void {
     this.flow = flow;
+  }
+
+  public getUserFromToken(): any {
+    if (this.token) {
+      try {
+        let token_obj = this.token;
+        return token_obj.user_id;
+      }
+      catch (error) {
+        console.log('Token parse error: ' + error);
+        return null
+      }
+    }
+    return null;
   }
 
   public isLoggedIn(): boolean {
