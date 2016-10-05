@@ -3,6 +3,8 @@ const firebase = require('firebase');
 const fb_instance = require('./init/setup');
 const logger = require('../util');
 const user = require('./user');
+const moment = require('moment');
+
 
 var queueRef = fb_instance.db.ref('/queue');
 
@@ -25,25 +27,31 @@ queue.emptyQueue = function (callback) {
     });
 };
 
-queue.pushUser = function (user_id, callback) {
-    getItem(user_id, function (status, response) {
-        if (response) {
-            callback(400, logger.logResponse('Error, User already exists in queue: ' + user_id));
-        } else {
-            user.getUser(user_id, function (status, data) {
-                if (!data) {
-                    callback(400, logger.logResponse('Error, User does not exist: ' + user_id));
-                } else {
-                    var newQueueItem = queueRef.push();
-                    data.user_id = user_id;
-                    newQueueItem.set(data).then(function () {
-                        callback(200, logger.logResponse('Success, Added queue item: ' + newQueueItem.key));
-                    }).catch(function (error) {
-                        callback(500, logger.logResponse('Error, Adding queue item: ' + error));
-                    });
-                }
-            });
-        }
+queue.pushUser = function (queue_template, callback) {
+    validateQueueTemplate(queue_template, function (valid) {
+        if (!valid) callback(400, logger.logResponse('Error, Invalid Queue Template'));
+        getItem(queue_template.user_id, function (status, response) {
+            if (response) {
+                callback(400, logger.logResponse('Error, User already exists in queue: ' + queue_template.user_id));
+            } else {
+                user.getUser(queue_template.user_id, function (status, data) {
+                    if (!data) {
+                        callback(400, logger.logResponse('Error, User does not exist: ' + queue_template.user_id));
+                    } else {
+                        var newQueueItem = queueRef.push();
+                        data.user_id = queue_template.user_id;
+                        data.reason = queue_template.reason;
+                        data.flow = queue_template.flow;
+                        data.time = moment().format('MMMM Do YYYY, h:mm:ss a');
+                        newQueueItem.set(data).then(function () {
+                            callback(200, logger.logResponse('Success, Added queue item: ' + newQueueItem.key));
+                        }).catch(function (error) {
+                            callback(500, logger.logResponse('Error, Adding queue item: ' + error));
+                        });
+                    }
+                });
+            }
+        });
     });
 };
 

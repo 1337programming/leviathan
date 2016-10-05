@@ -14,10 +14,10 @@ router.delete('/', function (req, res) {
     });
 });
 
-router.get('/push/:user_id', function (req, res) {
-    var user_id = req.params.user_id;
-    if (!user_id) return res.status(400).send(logger.logResponse('Error, Bad params for ADD to QUEUE'));
-    queue.pushUser(user_id, function (status, response) {
+router.post('/push/', function (req, res) {
+    var params = req.body;
+    if (!params) return res.status(400).send(logger.logResponse('Error, Bad params for ADD to QUEUE'));
+    queue.pushUser(params, function (status, response) {
         return res.status(status).send(response);
     });
 });

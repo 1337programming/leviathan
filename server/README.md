@@ -26,8 +26,8 @@ Under construction
  curl https://localhost:8443/queue/ --insecure
 ###Delete queue
  curl https://localhost:8443/queue/ -XDELETE --insecure
-###Add user to queue (replace 12345 with user id)
- curl https://localhost:8443/queue/push/12345--insecure
+###Add user to queue 
+ curl http://localhost:8081/queue/push -H 'Content-Type: application/json' -XPOST -d '{"reason":"Reason typed by user", "flow":"What the user selected to get here" ,"user_id":"123456"}' --insecure
 ###Get top user
  curl https://localhost:8443/queue/poll --insecure
 ###Get specific user (replace 12345 with user id)
