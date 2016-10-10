@@ -17,7 +17,7 @@ import { AllowCORS } from './express-middleware/allow-cors';
 // Routes
 import * as indexRoutes from './express-routes/index';
 import * as userRoutes from './express-routes/user';
-
+import * as accountRoutes from './express-routes/account';
 
 class Server {
 
@@ -68,9 +68,10 @@ class Server {
 
     // Register routes for the server
     private routes() {
-        
+
         this.app.use('/', indexRoutes);
-        this.app.use('/user', userRoutes)
+        this.app.use('/user', userRoutes);
+        this.app.use('/account', accountRoutes);
     }
 }
 
