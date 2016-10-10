@@ -2,6 +2,7 @@
 
 'use strict';
 
+// Core modules
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import * as path from 'path';
@@ -9,41 +10,79 @@ import * as fs from 'fs';
 import * as http from 'http';
 import * as https from 'https';
 
-import {Logger} from './utils/logger';
-import {AllowCORS} from './express-middleware/allow-cors';
+// Utility classes and middleware
+import { Logger } from './utils/logger';
+import { AllowCORS } from './express-middleware/allow-cors';
 
-let app = express();
-app.use(bodyParser.json());
+// Routes
+import * as indexRoute from './routes/index';
+import * as userRoute from './routes/user';
 
-// Allow Cross Origin Resource Sharing
-let allowCORS = new AllowCORS();
-app.use(allowCORS.allowCrossDomainRequests);
 
-const Config = require(path.resolve(__dirname, '../../config.json'));
+class Server {
 
-// Https server credentials
-const privateKey = fs.readFileSync(path.resolve(__dirname, './sslcert/server.key'), 'utf8');
-const certificate = fs.readFileSync(path.resolve(__dirname, './sslcert/server.crt'), 'utf8');
-const credentials = { key: privateKey, cert: certificate };
+    public app: express.Application;
 
-// Initialize servers for the app
-let httpServer = http.createServer(app);
-let httpsServer = https.createServer(credentials, app);
+    // Starts new express server
+    public static bootstrap(): Server {
+        return new Server();
+    }
+    // Configures the server and registers routes 
+    constructor() {
+        this.app = express();
 
-let logger = new Logger(Config.debug);
-httpServer.listen(Config.server_config.http.port, function () {
-    logger.log('Http Server is listening on port ' + Config.server_config.http.port);
-});
+        this.config();
 
-httpsServer.listen(Config.server_config.https.port, function () {
-    logger.log('Https Server is listening on port ' + Config.server_config.https.port);
-});
+        this.routes();
+    }
 
-// Root path -  serves index.html page
-app.get('/', function (request: any, response: any) {
-    response.sendFile(__dirname + '/index.html');
-});
+    // Express server config and start listeners
+    private config() {
+        this.app.use(bodyParser.json());
 
+        // Allow Cross Origin Resource Sharing
+        let allowCORS = new AllowCORS();
+        this.app.use(allowCORS.allowCrossDomainRequests);
+
+        // Configurations from the root location
+        const Config = require(path.resolve(__dirname, '../../config.json'));
+
+        // Https server credentials
+        const privateKey = fs.readFileSync(path.resolve(__dirname, './sslcert/server.key'), 'utf8');
+        const certificate = fs.readFileSync(path.resolve(__dirname, './sslcert/server.crt'), 'utf8');
+        const credentials = { key: privateKey, cert: certificate };
+
+        // Initialize servers for the app
+        let httpServer = http.createServer(this.app);
+        let httpsServer = https.createServer(credentials, this.app);
+
+        let logger = new Logger(Config.debug);
+        httpServer.listen(Config.server_config.http.port, function () {
+            logger.log('Http Server is listening on port ' + Config.server_config.http.port);
+        });
+
+        httpsServer.listen(Config.server_config.https.port, function () {
+            logger.log('Https Server is listening on port ' + Config.server_config.https.port);
+        });
+    }
+
+
+    // Refister routes
+    private routes() {
+        let router: express.Router = express.Router();
+
+        // Root path -  serves index.html page
+        let index: indexRoute.Index = new indexRoute.Index();
+        router.get('/', index.base.bind(index.base));
+
+        let user: userRoute.User = new userRoute.User();
+        //use router middleware
+        this.app.use(router);
+    }
+}
+
+let server = Server.bootstrap();
+export = server.app;
 
 // //Sockets
 // var httpIO = io(httpServer);
