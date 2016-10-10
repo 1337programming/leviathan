@@ -1,6 +1,10 @@
 export class Logger {
-
-    constructor(private _debug: boolean) { }
+    private _debug: boolean;
+    constructor(debug?: boolean) {
+        if (debug != null) {
+            this._debug = debug;
+        }
+    }
 
     log(msg: string): void {
         if (this._debug) {
@@ -8,7 +12,7 @@ export class Logger {
         }
     }
 
-    logResonse(msg: string): string {
+    logResponse(msg: string): string {
         this.log(msg);
         return (new Date()) + ': ' + msg;
     }

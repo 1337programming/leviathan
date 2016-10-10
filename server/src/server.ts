@@ -15,8 +15,8 @@ import { Logger } from './utils/logger';
 import { AllowCORS } from './express-middleware/allow-cors';
 
 // Routes
-import * as indexRoute from './routes/index';
-import * as userRoute from './routes/user';
+import * as indexRoutes from './express-routes/index';
+import * as userRoutes from './express-routes/user';
 
 
 class Server {
@@ -66,18 +66,11 @@ class Server {
         });
     }
 
-
-    // Refister routes
+    // Register routes for the server
     private routes() {
-        let router: express.Router = express.Router();
-
-        // Root path -  serves index.html page
-        let index: indexRoute.Index = new indexRoute.Index();
-        router.get('/', index.base.bind(index.base));
-
-        let user: userRoute.User = new userRoute.User();
-        //use router middleware
-        this.app.use(router);
+        
+        this.app.use('/', indexRoutes);
+        this.app.use('/user', userRoutes)
     }
 }
 
