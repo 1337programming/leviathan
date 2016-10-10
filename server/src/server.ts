@@ -18,6 +18,7 @@ import { AllowCORS } from './express-middleware/allow-cors';
 import * as indexRoutes from './express-routes/index';
 import * as userRoutes from './express-routes/user';
 import * as accountRoutes from './express-routes/account';
+import * as queueRoutes from './express-routes/queue';
 
 class Server {
 
@@ -31,8 +32,10 @@ class Server {
     constructor() {
         this.app = express();
 
+        // Config the express Server
         this.config();
 
+        // Register routes
         this.routes();
     }
 
@@ -56,6 +59,7 @@ class Server {
         let httpServer = http.createServer(this.app);
         let httpsServer = https.createServer(credentials, this.app);
 
+        // Listed on http and https port
         let logger = new Logger(Config.debug);
         httpServer.listen(Config.server_config.http.port, function () {
             logger.log('Http Server is listening on port ' + Config.server_config.http.port);
@@ -68,11 +72,13 @@ class Server {
 
     // Register routes for the server
     private routes() {
-
         this.app.use('/', indexRoutes);
         this.app.use('/user', userRoutes);
         this.app.use('/account', accountRoutes);
+        this.app.use('/queue', queueRoutes);
     }
+
+    
 }
 
 let server = Server.bootstrap();
@@ -113,14 +119,3 @@ export = server.app;
 //     request.httpsIO = httpsIO;
 //     next();
 // });
-
-// Routers
-// let UID = require('./src/routers/uid-router');
-// let User = require('./src/routers/user-router');
-// let Auth = require('./src/routers/auth-router');
-// let Queue = require('./src/routers/queue-router');
-
-// app.use('/user', User);
-// app.use('/auth', Auth);
-// app.use('/uid', UID);
-// app.use('/queue', Queue);

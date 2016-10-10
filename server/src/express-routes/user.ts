@@ -7,7 +7,7 @@ import { Logger } from '../utils/logger';
 // import {User} from '../firebase/user';
 
 let userRouter: express.Router = express.Router();
-let logger = new Logger();
+let logger:Logger= new Logger();
 // let user = new User();
 
 userRouter.post('/', (request: express.Request, response: express.Response) => {
