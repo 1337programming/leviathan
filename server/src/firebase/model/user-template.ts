@@ -1,15 +1,15 @@
 export class UserTemplate {
 
     // TODO: Create model for user template and implement validate function
-    private user: any;
+    private _user: any;
 
-    constructor(user: any) { this.user = user; }
+    constructor(user: any) { this._user = user; }
 
     valid() {
         return true;
     }
 
     getData() {
-        return this.user;
+        return this._user;
     }
 }
