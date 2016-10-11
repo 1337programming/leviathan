@@ -6,10 +6,12 @@ import * as express from 'express';
 import * as email_validator from 'email-validator';
 
 import { Logger } from '../utils/logger';
-// import {Account} from '../firebase/account';
+import { Account } from '../firebase/account';
+import { AccountTemplate } from '../firebase/model/account-template';
+
 
 let accountRouter: express.Router = express.Router();
-// let account = new Account();
+let account = new Account();
 
 accountRouter.post('/login', (request: express.Request, response: express.Response) => {
     let params = request.body;
@@ -18,10 +20,9 @@ accountRouter.post('/login', (request: express.Request, response: express.Respon
     } else if (!email_validator.validate(params.email)) {
         return response.status(400).send(Logger.logResponse('Error, Bad request, invalid email'));
     }
-    // account.login(params.email, params.password, function (status, response) {
-    //     return res.status(status).send(response);
-    // });
-    return response.status(200).send('Did not do anything');
+    account.login(params.email, params.password, function (status, loginResponse) {
+        return response.status(status).send(loginResponse);
+    });
 });
 
 accountRouter.post('/register', (request: express.Request, response: express.Response) => {
@@ -31,10 +32,10 @@ accountRouter.post('/register', (request: express.Request, response: express.Res
     } else if (!email_validator.validate(params.email)) {
         return response.status(400).send(Logger.logResponse('Error, Bad request, invalid email'));
     }
-    // account.register(params, function (status, response) {
-    //     return res.status(status).send(response);
-    // });
-    return response.status(200).send('Did not do anything');
+    let accountTemplate = new AccountTemplate(params);
+    account.register(accountTemplate, function (status, registerResponse) {
+        return response.status(status).send(registerResponse);
+    });
 });
 
 export = accountRouter;

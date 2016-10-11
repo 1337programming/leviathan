@@ -1,7 +1,7 @@
 /// <reference path='../../typings/index.d.ts' />
 
 import * as firebase from 'firebase';
-import { FB } from './init/setup';
+import { FB } from './helper/setup';
 import { Logger } from '../utils/logger';
 import { UserTemplate } from './model/user-template';
 
@@ -72,8 +72,6 @@ export class User {
         childUserRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
             if (snapshot.exists()) {
                 childUserRef.remove().then(function () {
-                    // TODO
-                    //  this.deleteUserReferences(userId);
                     callback(200, Logger.logResponse('SUCCESS: Delete user: ' + userId));
                 }).catch(function (error) {
                     callback(500, Logger.logResponse('ERROR, Delete user: ' + error));
@@ -83,33 +81,5 @@ export class User {
                 callback(200, null);
             }
         });
-    }
-
-    static deleteUserReferences(userId: string) {
-        // TODO
-        // const account = require('./account');
-        // const queue = require('./queue');
-        // const uid = require('./uid');
-        // account.deleteAccount(user_id, function (status, response) {
-        //     if (status !== 200) {
-        //         logger.log('Error, Deleting reference accounts for user: ' + user_id);
-        //     } else {
-        //         logger.log('Success, deleted reference accounts for user: ' + user_id);
-        //     }
-        // });
-        // queue.removeSpecificUser(user_id, function (status, response) {
-        //     if (status !== 200) {
-        //         logger.log('Error, Deleting reference queue items for user: ' + user_id);
-        //     } else {
-        //         logger.log('Success, deleted reference queue items for user: ' + user_id);
-        //     }
-        // });
-        // uid.deleteMapping(user_id, null, function (status, response) {
-        //     if (status !== 200) {
-        //         logger.log('Error, Deleting reference uid mappings for user: ' + user_id);
-        //     } else {
-        //         logger.log('Success, deleted reference uid mappings for user: ' + user_id);
-        //     }
-        // });
     }
 }

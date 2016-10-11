@@ -7,9 +7,9 @@ Under construction
 
 ##ACCOUNT
 ###Login
- curl http://localhost:8081/auth/login -H 'Content-Type: application/json' -XPOST -d '{"email":"test.test@1337programming.com","password":"password"}' --insecure
+ curl http://localhost:8081/account/login -H 'Content-Type: application/json' -XPOST -d '{"email":"test.test@1337programming.com","password":"password"}' --insecure
 ###Register
- curl http://localhost:8081/auth/register -H 'Content-Type: application/json' -XPOST -d '{"email":"test.test@1337programming.com","password":"password","firstname":"test","lastname":"testy","phone":"Android S6","number":"4256679082"}' --insecure
+ curl http://localhost:8081/account/register -H 'Content-Type: application/json' -XPOST -d '{"email":"test.test@1337programming.com","password":"password","firstname":"test","lastname":"testy","phone":"Android S6","number":"4256679082"}' --insecure
 
 ##USER
 ###Get user (replace 12345 with user_id)

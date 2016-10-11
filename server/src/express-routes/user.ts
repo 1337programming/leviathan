@@ -49,6 +49,8 @@ userRouter.delete('/:user_id', (request: express.Request, response: express.Resp
         return response.status(400).send(Logger.logResponse('ERROR, Bad params, for DELETE user'));
     }
     user.deleteUser(user_id, function (status, deleteUserResponse) {
+
+        // TODO Delete references
         return response.status(status).send(deleteUserResponse);
     });
 });

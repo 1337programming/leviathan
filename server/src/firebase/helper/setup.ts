@@ -11,7 +11,7 @@ export class FB {
             Logger.log('Initializing firebase');
             this._fb = firebase.initializeApp({
                 databaseURL: 'https://arduinonfc-e0df7.firebaseio.com',
-                serviceAccount: './src/firebase/init/service-account-credentials.json'
+                serviceAccount: './src/firebase/helper/service-account-credentials.json'
             });
         } else {
             Logger.log('Firebase already initialized');
