@@ -18,7 +18,9 @@ gulp.task('clean', (callback) => {
 gulp.task('tslint', () => {
     return gulp.src('src/**/*.ts')
         .pipe(tslint({ formatter: 'prose' }))
-        .pipe(tslint.report());
+        .pipe(tslint.report({
+            emitError: false
+        }));
 });
 
 gulp.task('build:server', function () {
@@ -47,7 +49,7 @@ gulp.task('start-server', function () {
         ext: 'ts json html',
         tasks: ['build'],
         stdout: true
-    }).on('restart', function () {});
+    }).on('restart', function () { });
 });
 
 gulp.task('serve', function () {

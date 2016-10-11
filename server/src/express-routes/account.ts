@@ -9,15 +9,14 @@ import { Logger } from '../utils/logger';
 // import {Account} from '../firebase/account';
 
 let accountRouter: express.Router = express.Router();
-let logger: Logger = new Logger();
 // let account = new Account();
 
 accountRouter.post('/login', (request: express.Request, response: express.Response) => {
     let params = request.body;
     if (!params) {
-        return response.status(400).send(logger.logResponse('Error, Bad params, for LOGIN'));
+        return response.status(400).send(Logger.logResponse('Error, Bad params, for LOGIN'));
     } else if (!email_validator.validate(params.email)) {
-        return response.status(400).send(logger.logResponse('Error, Bad request, invalid email'));
+        return response.status(400).send(Logger.logResponse('Error, Bad request, invalid email'));
     }
     // account.login(params.email, params.password, function (status, response) {
     //     return res.status(status).send(response);
@@ -28,9 +27,9 @@ accountRouter.post('/login', (request: express.Request, response: express.Respon
 accountRouter.post('/register', (request: express.Request, response: express.Response) => {
     let params = request.body;
     if (!params) {
-        return response.status(400).send(logger.logResponse('Error, Bad params, for REGISTER'));
+        return response.status(400).send(Logger.logResponse('Error, Bad params, for REGISTER'));
     } else if (!email_validator.validate(params.email)) {
-        return response.status(400).send(logger.logResponse('Error, Bad request, invalid email'));
+        return response.status(400).send(Logger.logResponse('Error, Bad request, invalid email'));
     }
     // account.register(params, function (status, response) {
     //     return res.status(status).send(response);

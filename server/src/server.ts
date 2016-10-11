@@ -61,13 +61,13 @@ class Server {
         let httpsServer = https.createServer(credentials, this.app);
 
         // Listed on http and https port
-        let logger = new Logger(Config.debug);
+        Logger.setDebugMode(Config.debug);
         httpServer.listen(Config.server_config.http.port, function () {
-            logger.log('Http Server is listening on port ' + Config.server_config.http.port);
+            Logger.log('Http Server is listening on port ' + Config.server_config.http.port);
         });
 
         httpsServer.listen(Config.server_config.https.port, function () {
-            logger.log('Https Server is listening on port ' + Config.server_config.https.port);
+            Logger.log('Https Server is listening on port ' + Config.server_config.https.port);
         });
     }
 

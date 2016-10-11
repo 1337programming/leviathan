@@ -1,18 +1,21 @@
 export class Logger {
-    private _debug: boolean;
-    constructor(debug?: boolean) {
+    private static _debug: boolean;
+
+    static setDebugMode(debug?: boolean) {
         if (debug != null) {
             this._debug = debug;
+        } else {
+            this._debug = false;
         }
     }
 
-    log(msg: string): void {
+    static log(msg: string): void {
         if (this._debug) {
             console.log((new Date()), msg);
         }
     }
 
-    logResponse(msg: string): string {
+    static logResponse(msg: string): string {
         this.log(msg);
         return (new Date()) + ': ' + msg;
     }
