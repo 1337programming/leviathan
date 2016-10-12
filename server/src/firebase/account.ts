@@ -67,14 +67,11 @@ export class Account {
                                 password: accountTemplate.getData().password,
                                 user_id: createUserResponse
                             });
-                            console.log('Here2');
-                            console.log(newAccountTemplate.getData());
                             newAccount.set(newAccountTemplate.getData()).then(() => {
                                 callback(200, Logger.logResponse('Success, Account created: ' + newAccount.key));
                             }).catch((error) => {
                                 callback(500, Logger.logResponse('Error, Adding account : ' + error));
                             });
-                            console.log('Here 3')
                         }
                     });
                 } else {
