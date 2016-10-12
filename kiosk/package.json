@@ -8,6 +8,11 @@
     "build": "webpack --prod --progress --profile --colors --display-error-details --display-cached --optimize-occurrence-order --optimize-dedupe",
     "lint": "tslint \"src/**/*.ts\"",
     "install:dist": "npm i --only=production",
+    "electron": "npm run build && electron desktop",
+    "electron:nobuild": "electron desktop",
+    "package:win": "electron-packager desktop Leviathan --platform=win32 --arch=all --out=dist --overwrite --version='1.2.5' --icon=./logo-icon.icns",
+    "package:mac": "electron-packager desktop Leviathan --platform=darwin --arch=all --prune --overwrite --out=dist --icon=./logo-icon.icns",
+    "package:linux": "electron-packager desktop Leviathan --asar --asar-unpack=protocol-link.html --overwrite --platform=linux --arch=x64 --prune=true --out=dist --icon=./logo-icon.icns",
     "testy": "gulp tasks/lint"
   },
   "dependencies": {
@@ -36,6 +41,8 @@
     "codelyzer": "^1.0.0-beta.0",
     "css-loader": "^0.25.0",
     "del": "^2.2.2",
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3",
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^0.9.0",
     "font-awesome": "^4.6.3",

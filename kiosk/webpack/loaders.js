@@ -13,13 +13,13 @@ module.exports = [
     ]
   }, {
     test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    loader: 'url-loader?limit=10000&minetype=application/font-woff'
+    loader: 'url-loader?limit=10000&minetype=application/font-woff&name=[name].[ext]'
   }, {
     test: /\.(ttf|eot|svg|jpeg|jpg|gif|png|txt)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    loader: 'file-loader'
+    loader: 'file-loader?name=[name].[ext]'
   }, {
     test: /\.mp4$/,
-    loader: 'file-loader'
+    loader: 'file-loader?name=[name].[ext]'
   }, {
     test: /\.scss$/,
     loader: 'style!css!sass?outputStyle=expanded&includePaths[]=' + path.join('node_modules/compass-mixins/lib')
