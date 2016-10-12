@@ -83,11 +83,11 @@ export class Account {
 
     deleteAccount(accountId: string, callback: (status: number, response: any) => void) {
         let childAccountRef = this._account_ref.child(accountId);
-        childAccountRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
+        childAccountRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
             if (snapshot.exists()) {
-                childAccountRef.remove().then(function () {
+                childAccountRef.remove().then(() => {
                     callback(200, Logger.logResponse('SUCCESS: Delete account: ' + accountId));
-                }).catch(function (error) {
+                }).catch((error) => {
                     callback(500, Logger.logResponse('ERROR, Delete account: ' + error));
                 });
             } else {

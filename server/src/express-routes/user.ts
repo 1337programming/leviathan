@@ -16,7 +16,7 @@ userRouter.post('/', (request: express.Request, response: express.Response) => {
         return response.status(400).send(Logger.logResponse('ERROR, Bad params, for CREATE user'));
     }
     let userTemplate = new UserTemplate(params);
-    user.createUser(userTemplate, function (status, postUserResponse) {
+    user.createUser(userTemplate, (status, postUserResponse) => {
         return response.status(status).send(postUserResponse);
     });
 });
@@ -26,7 +26,7 @@ userRouter.get('/:user_id', (request: express.Request, response: express.Respons
     if (!user_id) {
         return response.status(400).send(Logger.logResponse('ERROR, Bad params, for GET user'));
     }
-    user.getUser(user_id, function (status, getUserResponse) {
+    user.getUser(user_id, (status, getUserResponse) => {
         return response.status(status).send(getUserResponse);
     });
 });
@@ -38,7 +38,7 @@ userRouter.put('/:user_id', (request: express.Request, response: express.Respons
         return response.status(400).send(Logger.logResponse('ERROR, Bad params, for UPDATE user'));
     }
     let userTemplate = new UserTemplate(params);
-    user.updateUser(user_id, userTemplate, function (status, updateUserResponse) {
+    user.updateUser(user_id, userTemplate, (status, updateUserResponse) => {
         return response.status(status).send(updateUserResponse);
     });
 });
@@ -48,7 +48,7 @@ userRouter.delete('/:user_id', (request: express.Request, response: express.Resp
     if (!user_id) {
         return response.status(400).send(Logger.logResponse('ERROR, Bad params, for DELETE user'));
     }
-    user.deleteUser(user_id, function (status, deleteUserResponse) {
+    user.deleteUser(user_id, (status, deleteUserResponse) => {
 
         // TODO Delete references
         return response.status(status).send(deleteUserResponse);

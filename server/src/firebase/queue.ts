@@ -24,7 +24,7 @@ export class Queue {
     // TODO re-implement to be reactive
     getQueue(callback: (status: number, response: any) => void) {
         let fullQueueRef = this._queue_ref;
-        fullQueueRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
+        fullQueueRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
             if (snapshot.exists()) {
                 Logger.log('SUCCESS: Get queue');
                 callback(200, snapshot.val());
@@ -36,7 +36,7 @@ export class Queue {
 
     emptyQueue(callback: (status: number, response: any) => void) {
         let fullQueueRef = this._queue_ref;
-        fullQueueRef.remove(function (error) {
+        fullQueueRef.remove((error) => {
             if (error) {
                 callback(500, Logger.logResponse('ERROR: Delete queue: ' + error));
             } else {

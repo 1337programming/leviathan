@@ -62,11 +62,11 @@ class Server {
 
         // Listed on http and https port
         Logger.setDebugMode(Config.debug);
-        httpServer.listen(Config.server_config.http.port, function () {
+        httpServer.listen(Config.server_config.http.port, () => {
             Logger.log('Http Server is listening on port ' + Config.server_config.http.port);
         });
 
-        httpsServer.listen(Config.server_config.https.port, function () {
+        httpsServer.listen(Config.server_config.https.port, () => {
             Logger.log('Https Server is listening on port ' + Config.server_config.https.port);
         });
     }

@@ -110,9 +110,9 @@ export class Mapping {
                 let singleMappingRef = this._mapping_ref.child(mappingId);
                 singleMappingRef.once('value', (snapshot) => {
                     if (snapshot.exists()) {
-                        singleMappingRef.remove().then(function () {
+                        singleMappingRef.remove().then(() =>  {
                             callback(200, Logger.logResponse('SUCCESS: Delete account for user id: ' + userId));
-                        }).catch(function (error) {
+                        }).catch((error) => {
                             callback(500, Logger.logResponse('ERROR, Delete account for user id: ' + error));
                         });
                     } else {
@@ -132,9 +132,9 @@ export class Mapping {
                 let singleMappingRef = this._mapping_ref.child(mappingId);
                 singleMappingRef.once('value', (snapshot) => {
                     if (snapshot.exists()) {
-                        singleMappingRef.remove().then(function () {
+                        singleMappingRef.remove().then(() => {
                             callback(200, Logger.logResponse('SUCCESS: Delete mapping for phone id: ' + phoneId));
-                        }).catch(function (error) {
+                        }).catch((error) => {
                             callback(500, Logger.logResponse('ERROR, Delete mapping for phone id: ' + error));
                         });
                     } else {

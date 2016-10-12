@@ -13,13 +13,13 @@ let queueRouter: express.Router = express.Router();
 let queue = new Queue();
 
 queueRouter.get('/', (request: express.Request, response: express.Response) => {
-    queue.getQueue(function (status, getQueueResponse) {
+    queue.getQueue((status, getQueueResponse) => {
         return response.status(status).send(getQueueResponse);
     });
 });
 
 queueRouter.delete('/', (request: express.Request, response: express.Response) => {
-    queue.getQueue(function (status, deleteQueueResponse) {
+    queue.getQueue((status, deleteQueueResponse) => {
         return response.status(status).send(deleteQueueResponse);
     });
 });
@@ -31,7 +31,7 @@ queueRouter.post('/push/:userId', (request: express.Request, response: express.R
         return response.status(400).send(Logger.logResponse('Error, Bad params for ADD to QUEUE'));
     }
     let queueItemTemplate = new QueueItemTemplate(params);
-    queue.pushUser(userId, queueItemTemplate, function (status, pushUserResponse) {
+    queue.pushUser(userId, queueItemTemplate, (status, pushUserResponse) => {
         return response.status(status).send(pushUserResponse);
     });
 });
@@ -41,13 +41,13 @@ queueRouter.get('/poll/:user_id', (request: express.Request, response: express.R
     if (!user_id) {
         return response.status(400).send(Logger.logResponse('Error, Bad params for POLL from QUEUE'));
     }
-    queue.pollSpecificUser(user_id, function (status, pollSpecificUserResponse) {
+    queue.pollSpecificUser(user_id, (status, pollSpecificUserResponse) =>  {
         return response.status(status).send(pollSpecificUserResponse);
     });
 });
 
 queueRouter.get('/poll', (request: express.Request, response: express.Response) => {
-    queue.pollTopUser(function (status, pollTopUserResponse) {
+    queue.pollTopUser((status, pollTopUserResponse) => {
         return response.status(status).send(pollTopUserResponse);
     });
 });

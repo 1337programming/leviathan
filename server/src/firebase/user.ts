@@ -23,10 +23,10 @@ export class User {
             callback(400, null);
         } else {
             let newUser: firebase.database.ThenableReference = this._user_ref.push();
-            newUser.set(userTemplate.getData()).then(function () {
+            newUser.set(userTemplate.getData()).then(() => {
                 Logger.log('SUCCESS, User created: ' + newUser.key);
                 callback(200, newUser.key);
-            }).catch(function (error) {
+            }).catch((error) => {
                 Logger.log('ERROR, Adding user : ' + error);
                 callback(500, null);
             });
@@ -35,7 +35,7 @@ export class User {
 
     getUser(userId: string, callback: (status: number, response: any) => void) {
         let childUserRef = this._user_ref.child(userId);
-        childUserRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
+        childUserRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
             if (snapshot.exists()) {
                 Logger.log('SUCCESS: Get user: ' + userId);
                 callback(200, snapshot.val());
@@ -52,11 +52,11 @@ export class User {
             callback(400, null);
         } else {
             let childUserRef = this._user_ref.child(userId);
-            childUserRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
+            childUserRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
                 if (snapshot.exists()) {
-                    childUserRef.update(userTemplate.getData()).then(function () {
+                    childUserRef.update(userTemplate.getData()).then(() => {
                         callback(200, Logger.logResponse('SUCCESS: Update user: ' + userId));
-                    }).catch(function (error) {
+                    }).catch((error) => {
                         callback(500, Logger.logResponse('ERROR, Update user: ' + error));
                     });
                 } else {
@@ -69,11 +69,11 @@ export class User {
 
     deleteUser(userId: string, callback: (status: number, response: any) => void) {
         let childUserRef = this._user_ref.child(userId);
-        childUserRef.once('value', function (snapshot: firebase.database.DataSnapshot) {
+        childUserRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
             if (snapshot.exists()) {
-                childUserRef.remove().then(function () {
+                childUserRef.remove().then(() => {
                     callback(200, Logger.logResponse('SUCCESS: Delete user: ' + userId));
-                }).catch(function (error) {
+                }).catch((error) => {
                     callback(500, Logger.logResponse('ERROR, Delete user: ' + error));
                 });
             } else {
