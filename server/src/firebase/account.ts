@@ -51,8 +51,7 @@ export class Account {
 
     register(accountTemplate: AccountTemplate, callback: (status: number, response: any) => void) {
         if (!accountTemplate.valid()) {
-            Logger.log('ERROR: Invalid Account Template');
-            callback(400, null);
+            callback(400, Logger.logResponse('ERROR: Invalid Account Template'));
         } else {
             this.findAccount(accountTemplate.getData().email, (accountId) => {
                 if (!accountId) {

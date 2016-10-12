@@ -19,7 +19,7 @@ import * as indexRoutes from './express-routes/index';
 import * as userRoutes from './express-routes/user';
 import * as accountRoutes from './express-routes/account';
 import * as queueRoutes from './express-routes/queue';
-import * as phoneRoutes from './express-routes/phone';
+import * as mappingRoutes from './express-routes/mapping';
 
 class Server {
 
@@ -77,7 +77,7 @@ class Server {
         this.app.use('/user', userRoutes);
         this.app.use('/account', accountRoutes);
         this.app.use('/queue', queueRoutes);
-        this.app.use('/phone', phoneRoutes);
+        this.app.use('/mapping', mappingRoutes);
     }
 
 }

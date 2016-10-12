@@ -34,9 +34,13 @@ Under construction
 curl http://localhost:8081/queue/poll/12345 --insecure
 
 ##UID
-###Add UID to USER_ID mapping (Replace --USER_ID-- and --UID_VALUE-- with actual values)
- curl http://localhost:8081/uid/--USER_ID--/--UID_VALUE-- -H 'Content-Type: application/json' -XPOST -d '{"phone":"new phone"}' --insecure
-###Get USER_ID from mapping (Replace --UID_VALUE-- with actual value). This will also emit a signal with user id to client
- curl http://localhost:8081/uid/read/12345 --insecure
-###Delete UID mapping (Replace --UID_VALUE-- with actual value)
- curl http://localhost:8081/uid/--UID_VALUE-- -XDELETE --insecure
+###Add UID to USER_ID mapping (Replace --USER_ID-- and --PHONE-ID-- with actual values)
+ curl http://localhost:8081/mapping/--USER_ID--/--PHONE-ID-- -H 'Content-Type: application/json' -XPOST -d '{"phone":"new phone"}' --insecure
+###Get USER_ID from mapping (Replace --PHONE_ID-- with actual value). This will also emit a signal with user id to client
+ curl http://localhost:8081/mapping/user/--PHONE-ID-- --insecure
+###Get PHONE_ID from mapping (Replace --USER_ID-- with actual value). This will also emit a signal with user id to client
+ curl http://localhost:8081/mapping/phone/--USER_ID-- --insecure
+###Delete Mapping for userID mapping (Replace --USER_ID-- with actual value)
+ curl http://localhost:8081/mapping/user/--USER_ID-- -XDELETE --insecure
+###Delete Mapping for phoneId mapping (Replace --PHONE_ID-- with actual value)
+ curl http://localhost:8081/mapping/phone/--PHONE_ID-- -XDELETE --insecure
