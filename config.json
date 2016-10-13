@@ -5,16 +5,14 @@
       "port": 3000
     }
   },
-  "node_server": {
-    "server_config": {
-      "http": {
-        "port": 8081,
-        "endpoint": "http://localhost"
-      },
-      "https": {
-        "port": 8443,
-        "endpoint": "https://localhost"
-      }
+  "server_config": {
+    "http": {
+      "port": 8081,
+      "endpoint": "http://localhost"
+    },
+    "https": {
+      "port": 8443,
+      "endpoint": "https://localhost"
     }
   }
 }
