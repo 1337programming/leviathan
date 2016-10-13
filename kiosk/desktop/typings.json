@@ -1,0 +1,11 @@
+{
+  "name": "nfc",
+  "dependencies": {
+    "request": "registry:npm/request#2.69.0+20160428223725"
+  },
+  "globalDependencies": {
+    "core-js": "registry:dt/core-js#0.0.0+20160914114559",
+    "node": "registry:dt/node#6.0.0+20160925070332",
+    "serialport": "registry:dt/serialport#4.0.1+20160915134249"
+  }
+}

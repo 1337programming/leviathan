@@ -31,7 +31,7 @@ export class ManualEntryComponent implements OnInit {
       .subscribe(
       (token) => {
         this.authService.setToken(token);
-        this.router.navigate(['account']);
+        this.router.navigate([`${this.authService.getFlow()}`]);
       },
       (err) => {
         this.msgs.push({
