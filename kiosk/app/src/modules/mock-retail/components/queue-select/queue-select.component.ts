@@ -32,7 +32,7 @@ export class QueueSelect implements OnInit {
   private connectCall() {
     this.display = true;
     setTimeout(() => {
-      this.router.navigate(['/retail/plans'])
+      this.router.navigate(['/retail/plans']);
     }, 5000);
   }
   

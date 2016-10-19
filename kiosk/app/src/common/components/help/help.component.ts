@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {HelpService} from './services/help.service'
+import {HelpService} from './services/help.service';
 import {Message} from 'primeng/primeng';
-import { Observable } from 'rxjs/RX'
+import { Observable } from 'rxjs/RX';
 
 
 
@@ -41,7 +41,7 @@ export class HelpComponent implements OnInit {
         this.modalWidth = 600;
       }
     }, 20);
-    //this.display = false;
+    // this.display = false;
   }
   
   private addToQueue(reason: string) {

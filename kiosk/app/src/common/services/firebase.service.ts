@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {Observable, Observer} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Observer } from 'rxjs';
 import * as Firebase from 'firebase';
-import {User} from '../interfaces/firebase.interface';
+import { User } from '../interfaces/firebase.interface';
 
 @Injectable()
 export class FirebaseService {
-  
+
   private instance: any;
   private authData: any;
   private queue: Array<User>;
-  
+
   constructor() {
     this.queue = [];
     let config: any = {
@@ -25,23 +25,25 @@ export class FirebaseService {
     }
     this.handleEvents();
   }
-  
+
   public getQueue(): Array<User> {
     return this.queue;
   }
-  
+
   private handleEvents() {
     let queueRef = this.instance.database().ref('queue');
     queueRef.on('value', (data) => {
       this.queue = [];
-      console.log(data);
+      // console.log(data);
       let obj = data.val();
       for (let key in obj) {
-        this.queue.push(obj[key]);
+        if (obj.hasOwnProperty(key)) { // Linting error fix
+          this.queue.push(obj[key]);
+        }
       }
     });
   }
-  
+
   private getAuthData(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.instance.authAnonymously((error: any, authData: any) => {
@@ -53,5 +55,5 @@ export class FirebaseService {
       });
     });
   }
-  
+
 }

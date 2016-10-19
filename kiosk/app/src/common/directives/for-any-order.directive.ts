@@ -21,21 +21,21 @@ class NgForRow {
 export class ForAnyOrder implements DoCheck {
   private collection: any;
   private differ: IterableDiffer;
-  private viewMap: Map<any,ViewRef> = new Map<any,ViewRef>();
-  
+  private viewMap: Map<any, ViewRef> = new Map<any, ViewRef>();
+
   constructor(private changeDetector: ChangeDetectorRef,
-              private differs: IterableDiffers,
-              private template: TemplateRef<NgForRow>,
-              private viewContainer: ViewContainerRef) {
+    private differs: IterableDiffers,
+    private template: TemplateRef<NgForRow>,
+    private viewContainer: ViewContainerRef) {
   }
-  
+
   public set forAnyOrderOf(coll: any) {
     this.collection = coll;
     if (coll && !this.differ) {
       this.differ = this.differs.find(coll).create(this.changeDetector);
     }
   }
-  
+
   public ngDoCheck() {
     if (this.differ) {
       const changes = this.differ.diff(this.collection);
@@ -54,5 +54,5 @@ export class ForAnyOrder implements DoCheck {
       }
     }
   }
-  
+
 }

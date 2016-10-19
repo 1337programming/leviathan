@@ -10,7 +10,7 @@ var WebpackBrowserPlugin = require('webpack-browser-plugin');
 var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var path = require('path');
 var argv = require('yargs').argv;
-var DevOpsConfig = require('../config.json').node_server.server_config;
+var DevOpsConfig = require('../config.json').server_config.https;
 
 var PROD = false;
 if (argv.prod) {

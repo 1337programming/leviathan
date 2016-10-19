@@ -39,12 +39,11 @@ export class AuthService {
   public getUserFromToken(): any {
     if (this.token) {
       try {
-        let token_obj = this.token;
-        return token_obj.user_id;
-      }
-      catch (error) {
+        let tokenObj = this.token;
+        return tokenObj.user_id;
+      } catch (error) {
         console.log('Token parse error: ' + error);
-        return null
+        return null;
       }
     }
     return null;
@@ -86,9 +85,9 @@ export class AuthService {
 
     console.error(errMsg); // log to console instead
 
-    var errorDisplay, status = error.status ? error.status : 999;
+    let errorDisplay, status = error.status ? error.status : 999;
     if (status === 400) {
-      errorDisplay = 'Invalid submission for Login'
+      errorDisplay = 'Invalid submission for Login';
     } else if (status === 403) {
       errorDisplay = 'Invalid email or password';
     } else if (status === 404) {

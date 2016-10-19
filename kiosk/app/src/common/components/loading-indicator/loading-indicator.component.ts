@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 let template = require('./views/loading-indicator.html');
 let style = require('!!raw!sass!./views/loading-indicator.scss');
@@ -9,16 +9,16 @@ let style = require('!!raw!sass!./views/loading-indicator.scss');
   styles: [style]
 })
 export class LoadingIndicator {
-  @Input() progress = 0;
-  
+  @Input() private progress: number = 0;
+
   constructor(private sanitizer: DomSanitizer) {
   };
-  
+
   private getTransform1() {
     const rotation = Math.min(-180 + (this.progress / 50) * 180, 0);
     return this.sanitizer.bypassSecurityTrustStyle(`rotateZ(${rotation}deg)`);
   }
-  
+
   private getTransform2() {
     const rotation = Math.max(-180, Math.min(-180 + ((this.progress - 50) / 50) * 180, 0));
     return this.sanitizer.bypassSecurityTrustStyle(`rotateZ(${rotation}deg)`);

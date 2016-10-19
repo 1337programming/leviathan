@@ -10,15 +10,15 @@ export class HelpService {
     constructor(private _authService: AuthService, private _http: Http) {
 
     }
-    addUser(reason: string) {
-        let user_id = this._authService.getUserFromToken();
+    public addUser(reason: string) {
+        let userId = this._authService.getUserFromToken();
         let flow = this._authService.getFlow();
-        return this.addUserToQueue(user_id, flow, reason);
+        return this.addUserToQueue(userId, flow, reason);
     }
 
-    private addUserToQueue(user_id: string, flow: string, reason: string): any {
-        console.log('Adding user: ' + user_id + ' to queue');
-        let body = JSON.stringify({ 'user_id': user_id, 'reason': reason, 'flow': flow });
+    private addUserToQueue(userId: string, flow: string, reason: string): any {
+        console.log('Adding user: ' + userId + ' to queue');
+        let body = JSON.stringify({ 'user_id': userId, 'reason': reason, 'flow': flow });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -38,7 +38,7 @@ export class HelpService {
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg); // log to console instead
 
-        var errorDisplay, status = error.status ? error.status : 999;
+        let errorDisplay, status = error.status ? error.status : 999;
         if (status === 400) {
             errorDisplay = 'Looks like you are already in Queue';
         } else {

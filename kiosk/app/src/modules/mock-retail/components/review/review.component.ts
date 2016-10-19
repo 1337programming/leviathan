@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QueueService} from '../../services/queue.service';
-import {Plan} from '../plans/plans-mock';
+import {PLAN} from '../plans/plans-mock';
 
 let template = require('./views/review.html');
 let style = require('!!raw!sass!./views/review.scss');
@@ -13,8 +13,8 @@ let style = require('!!raw!sass!./views/review.scss');
 })
 export class ReviewComponent implements OnInit {
   
-  private previousPlan: Plan;
-  private newPlan: Plan;
+  private previousPlan: PLAN;
+  private newPlan: PLAN;
   
   constructor(private router: Router, private queueService: QueueService) {
   }

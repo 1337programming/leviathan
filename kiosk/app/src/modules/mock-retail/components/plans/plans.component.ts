@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {QueueService} from '../../services/queue.service';
-import {Plans, Plan} from './plans-mock';
+import {PLANS, PLAN} from './plans-mock';
 import {User} from 'app/src/common/interfaces/firebase.interface';
 
 let template = require('./views/plans.html');
@@ -14,18 +14,18 @@ let style = require('!!raw!sass!./views/plans.scss');
 })
 export class PlansComponent implements OnInit {
   
-  private plans: Array<Plan>;
+  private plans: Array<PLAN>;
   private user: User;
   
   constructor(private router: Router, private queueService: QueueService) {
-    this.plans = Plans;
+    this.plans = PLANS;
   }
   
   public ngOnInit() {
     this.user = this.queueService.getUser();
   }
   
-  private selectPlan(plan: Plan) {
+  private selectPlan(plan: PLAN) {
     this.user.plan = plan;
   }
   

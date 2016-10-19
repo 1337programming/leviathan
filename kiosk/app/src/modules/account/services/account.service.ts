@@ -11,14 +11,14 @@ export class AccountService {
     
   }
   
-  getUser() {
-    let user_id = this._authService.getUserFromToken();
-    return this.getUserDetails(user_id);
+  public getUser() {
+    let userId = this._authService.getUserFromToken();
+    return this.getUserDetails(userId);
   }
   
-  private getUserDetails(user_id: string): any {
+  private getUserDetails(userId: string): any {
     
-    return this._http.get(ACCOUNT_URL + user_id)
+    return this._http.get(ACCOUNT_URL + userId)
       .map(this.handleGetUserResponse)
       .catch(this.handleGetUserError);
   }
