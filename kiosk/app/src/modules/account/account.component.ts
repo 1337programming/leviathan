@@ -14,7 +14,7 @@ let template = require('./views/account.html');
 export class AccountComponent implements OnInit {
 
   private user: any;
-
+  
   @ViewChild(HelpComponent) private help: HelpComponent;
   private msgs: Array<Message>;
 

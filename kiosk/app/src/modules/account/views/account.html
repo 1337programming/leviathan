@@ -2,54 +2,58 @@
 
 <div class="container margin-top fadein">
 
-    <div id="confirmation">
+	<div id="confirmation">
 
-        <div class="page-title gray-bg">
-            <div class="container">
-                <div *ngIf="user">
-                    <h1 class="m-t-xl m-b-xl center">Welcome {{user.firstname}} {{user.lastname}}!</h1>
-                </div>
-                <div *ngIf="!user">
-                    <loading-indicator></loading-indicator>
-                </div>
-                <h2 class="m-t-xl m-b-xl center">About your plan:</h2>
-            </div>
-        </div>
+		<div class="page-title gray-bg">
+			<div class="container">
+				<div *ngIf="user">
+					<h1 class="m-t-xl m-b-xl center">Welcome {{user.firstname}} {{user.lastname}}!</h1>
+				</div>
+				<div *ngIf="!user">
+					<loading-indicator></loading-indicator>
+				</div>
+			</div>
+		</div>
 
-        <hr class="divider m-t-xl">
+		<hr class="divider m-t-xl">
 
-        <div class="container">
-            <div class="row">
-                <about-plan></about-plan>
-            </div>
-        </div>
+		<div class="container">
+			<div class="row">
+				<div *ngIf="user">
+					<about-plan [plan]="user.plan"></about-plan>
+				</div>
+				<div *ngIf="!user">
+					<loading-indicator></loading-indicator>
+				</div>
+			</div>
+		</div>
 
-        <div class="page-title gray-bg">
-            <div class="container">
-                <h2 class="m-t-xl m-b-xl center">Update your options:</h2>
-            </div>
-        </div>
+		<div class="page-title gray-bg">
+			<div class="container">
+				<h2 class="m-t-xl m-b-xl center">Update your options:</h2>
+			</div>
+		</div>
 
-        <hr class="divider m-t-xl">
+		<hr class="divider m-t-xl">
 
-        <div class="container">
-            <div class="row">
-                <update-plan></update-plan>
-            </div>
-        </div>
+		<div class="container">
+			<div class="row">
+				<update-plan></update-plan>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
-    <div class="row spacing">
-        <div class="col-xs-12 buttons-container button-spacing">
-            <div class="button-box">
-                <button class="btn btn-secondary" (click)="callHelp()">Call Rep</button>
-            </div>
-            <div class="button-box">
-                <button class="btn btn-primary" [routerLink]="['/complete']">Done</button>
-            </div>
-        </div>
-    </div>
+	<div class="row spacing">
+		<div class="col-xs-12 buttons-container button-spacing">
+			<div class="button-box">
+				<button class="btn btn-secondary" (click)="callHelp()">Call Rep</button>
+			</div>
+			<div class="button-box">
+				<button class="btn btn-primary" [routerLink]="['/complete']">Done</button>
+			</div>
+		</div>
+	</div>
 
 </div>
 

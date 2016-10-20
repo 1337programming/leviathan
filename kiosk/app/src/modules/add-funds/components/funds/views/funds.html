@@ -1,15 +1,42 @@
 <div class="row spacing">
-    <div class="col-xs-12 center">
-        <loading-indicator [hidden]="!loading"></loading-indicator>
-        <div [hidden]="loading">
-            <h2 class="price-text n1 fadein"><sup class="n2">$</sup>831<sup class="n2">38</sup></h2>
-        </div>
-    </div>
+	<div class="col-xs-12 center">
+		<div>
+			<h2 class="price-text n1 fadein"><sup class="n2">$</sup>831<sup class="n2">38</sup></h2>
+			<button [hidden]="addingFunds" class="btn btn-primary" (click)="addFunds()">Add funds</button>
+		</div>
+	</div>
 </div>
+<div class="col-xs-12 fadein" [hidden]="!addingFunds || processingPayment">
+	<div class="card">
+		<div class="row center spacing">
+			<div class="col-xs-6 center">
+				<h4 class="card-title" *ngIf="!cashOption">Adding Card funds</h4>
+				<h4 class="card-title" *ngIf="cashOption">Adding Cash funds</h4>
+			</div>
+			<div class="col-xs-6 center">
+				<button class="btn btn-outline-warning active" *ngIf="!cashOption" (click)="chooseCash()">Cash</button>
+				<button class="btn btn-outline-warning active" *ngIf="cashOption" (click)="chooseCard()">Card</button>
+			</div>
+		</div>
+		<form #paymentForm="ngForm" (ngSubmit)="processPayment(paymentForm.value)">
+			<div class="form-group">
+				<label class="vhide">Payment Amount</label>
+				<input name="payment" type="number" min="0.05" step="0.05" max="30" class="form-control" placeholder="Minimum Amount $0.05"
+					ngModel required>
+			</div>
+			<div class="row center spacing">
+				<div class="col-xs-6 center">
+					<button class="btn btn-secondary btn-sm">Process Payment</button>
+				</div>
+				<div class="col-xs-6 center">
+					<button class="btn btn-primary" (click)="stopAdding()">Cancel</button>
+				</div>
+			</div>
+		</form>
+	</div>
 
-<div class="row spacing">
-    <div class="col-xs-12 center">
-        <h2 [hidden]="loading" class="fadein">Insert cash or credit card</h2>
-        <h2 [hidden]="!loading">Calculating your payment...</h2>
-    </div>
+</div>
+<div class="col-xs-12 center fadein" [hidden]="!processingPayment">
+	<h5>Processing your payment...</h5>
+	<loading-indicator></loading-indicator>
 </div>

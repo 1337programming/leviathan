@@ -40,7 +40,7 @@ export class AuthService {
     if (this.token) {
       try {
         let tokenObj = this.token;
-        return tokenObj.user_id;
+        return tokenObj.userId;
       } catch (error) {
         console.log('Token parse error: ' + error);
         return null;
