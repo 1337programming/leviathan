@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs';
 
-const AUTH_URL: string = 'http://localhost:8081/auth/login';
+const AUTH_URL: string = 'http://localhost:8081/account/login';
 
 @Injectable()
 export class AuthService {

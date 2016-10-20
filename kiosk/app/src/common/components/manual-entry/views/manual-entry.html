@@ -1,37 +1,27 @@
 <div class="container fadein">
-<p-growl [value]="msgs"></p-growl>
-    <div class="row m-t-xxl spacing">
-        <h1 class="center spacing">Let's find out who you are.</h1>
-        <form action="#">
-            <fieldset>
+	<p-growl [value]="msgs"></p-growl>
+	<div class="row m-t-xxl spacing">
+		<h1 class="center spacing">Let's find out who you are.</h1>
+		<form #form="ngForm" (ngSubmit)="signIn(form.value)">
+			<fieldset>
+				<legend>Sign In</legend>
+				<div class="form-group">
+					<label class="vhide">Email</label>
+					<input name="email" type="email" class="form-control" placeholder="Enter email address" ngModel required>
+				</div>
+				<div class="form-group">
+					<label class="vhide">Password</label>
+					<input name="password" type="password" class="form-control" placeholder="Enter password" ngModel required minlength="6">
+				</div>
+				<button class="signin">Sign in</button>
+			</fieldset>
 
-                <legend>Sign In</legend>
+		</form>
+	</div>
 
-                <label for="email" class="vhide">Email</label>
-                <input id="email" name="email" type="email" placeholder="jane.doe@email.com" required minlength="2" [(ngModel)]="email">
-
-                <!--<label for="username" class="vhide">Name</label>
-                <input id="username" name="username" type="text" placeholder="John Smith" required minlength="2">-->
-
-                <!--<label for="password" class="vhide">Phone Number</label>
-                <input class="form-control" id="password" name="password" type="text" placeholder="333-444-6789" required minlength="6">-->
-
-                <label for="password" class="vhide">Password</label>
-                <input id="password" name="password" type="password" placeholder="*******" required minlength="6" [(ngModel)]="password">
-
-                <input type="checkbox" name="remember" id="remember" class="vhide">
-                <label for="remember">
-                    <i class="octicon octicon-check"></i> Allow SMS Notifications
-                </label>
-                <button class="signin" (click)="signIn()">Sign in</button>
-            </fieldset>
-
-        </form>
-    </div>
-
-    <div class="row spacing">
-        <div class="row center scan">
-            <button class="btn btn-secondary" [routerLink]="['/identify/scan']">Scan</button>
-        </div>
-    </div>
+	<div class="row spacing">
+		<div class="row center scan">
+			<button class="btn btn-secondary" [routerLink]="['/identify/scan']">Scan</button>
+		</div>
+	</div>
 </div>

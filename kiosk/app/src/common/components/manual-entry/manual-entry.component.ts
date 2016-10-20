@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'app/src/common/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Message } from 'primeng/primeng';
 import { Observable } from 'rxjs';
 
@@ -14,8 +14,6 @@ let style = require('!!raw!sass!./views/manual-entry.scss');
 })
 export class ManualEntryComponent implements OnInit {
 
-  private email: string;
-  private password: string;
   private msgs: Array<Message>;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -25,20 +23,21 @@ export class ManualEntryComponent implements OnInit {
   public ngOnInit() {
   }
 
-  private signIn() {
-
-    this.authService.authenticate(this.email, this.password)
-      .subscribe(
-      (token) => {
-        this.authService.setToken(token);
-        this.router.navigate([`${this.authService.getFlow()}`]);
-      },
-      (err) => {
-        this.msgs.push({
-          severity: 'error', summary: err
+  private signIn(form: any): void {
+    if (!form.valid) { // Dont process submit
+      this.authService.authenticate(form.email, form.password)
+        .subscribe(
+        (token) => {
+          this.authService.setToken(token);
+          this.router.navigate([`${this.authService.getFlow()}`]);
+        },
+        (err) => {
+          this.msgs.push({
+            severity: 'error', summary: err
+          });
+          return Observable.of(err.message);
         });
-        return Observable.of(err.message);
-      });
+    }
   }
 
 }
