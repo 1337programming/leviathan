@@ -14,6 +14,7 @@ export class CompleteComponent implements OnInit {
 
   private processing: boolean;
   private message: string;
+  private hideButtons: boolean;
   private yahoo: boolean;
 
   constructor(private router: Router, private authService: AuthService) {
@@ -22,6 +23,7 @@ export class CompleteComponent implements OnInit {
 
   public ngOnInit() {
     this.processing = false;
+    this.hideButtons = false;
     this.message = 'Anything else we can do for you?';
   }
 
@@ -30,6 +32,7 @@ export class CompleteComponent implements OnInit {
       this.processing = true;
       this.message = 'Bringing you back to main menu...';
       this.yahoo = true;
+      this.hideButtons = true;
       setTimeout(() => {
         this.router.navigate(['/visit-options']);
       }, 1500);
@@ -40,6 +43,7 @@ export class CompleteComponent implements OnInit {
     if (!this.processing) {
       this.processing = true;
       this.message = 'See us again soon!';
+      this.hideButtons = true;
       this.authService.deleteToken();
       setTimeout(() => {
         this.router.navigate(['/home']);
