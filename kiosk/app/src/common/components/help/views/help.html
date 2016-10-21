@@ -1,21 +1,24 @@
-<p-dialog header="Help" [(visible)]="display" [draggable]="false" [responsive]="true" [resizable]="false" [width]="modalWidth" modal="modal" showEffect="fade">
+<p-dialog header="Help" [(visible)]="display" [draggable]="false" [responsive]="true" [resizable]="false" [width]="modalWidth"
+	modal="modal" showEffect="fade">
 
-    <div class="form-group">
-        <label for="exampleTextarea">So we can assist you better,
+	<div class="form-group">
+		<label for="exampleTextarea">So we can assist you better,
             please tell us a bit more about your reason for visiting:</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="reason"></textarea>
-    </div>
+		<textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="reason"></textarea>
+	</div>
+	<div *ngIf="numberPeopleInLine">
+		<small>Currently {{numberPeopleInLine}} customer in line. Estimated wait time {{numberPeopleInLine*2.2}} minutes</small>
+	</div>
 
-    <footer>
-        <div class="col-xs-12 buttons-container button-spacing">
-            <div class="button-box">
-                <button class="btn btn-secondary" (click)="close()">Cancel</button>
-            </div>
+	<footer>
+		<div class="col-xs-12 buttons-container button-spacing">
+			<div class="button-box">
+				<button class="btn btn-secondary" (click)="close()">Cancel</button>
+			</div>
 
-            <div class="button-box">
-                <button class="btn btn-primary" (click)="addToQueue(reason)">Continue</button>
-            </div>
-        </div>
-    </footer>
+			<div class="button-box">
+				<button class="btn btn-primary" (click)="addToQueue(reason)">Continue</button>
+			</div>
+		</div>
+	</footer>
 </p-dialog>
-

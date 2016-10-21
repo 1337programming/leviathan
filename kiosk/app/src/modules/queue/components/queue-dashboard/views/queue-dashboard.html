@@ -1,1 +1,12 @@
-<p>Queue Dashboard</p>
+<div class="card">
+	<div class="card-block">
+		<h4 class="card-title">Current Queue</h4>
+		<div class="card-text" *ngIf="users">
+			<ul class="list-group">
+				<li class="list-group-item" [class.active]="checkCurrentUser(user)" *ngFor="let user of users">
+					{{user.firstname}} {{user.lastname}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

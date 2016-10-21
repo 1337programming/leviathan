@@ -17,7 +17,15 @@ queueRouter.get('/', (request: express.Request, response: express.Response) => {
         return response.status(status).send(getQueueResponse);
     });
 });
-
+queueRouter.get('/position/:userId', (request: express.Request, response: express.Response) => {
+    let userId = request.params.userId;
+    if (!userId) {
+        return response.status(400).send(Logger.logResponse('Error, Bad params for GET user position'));
+    }
+    queue.getUserPosition(userId, (status, getPositionResponse) => {
+        return response.status(status).send(getPositionResponse);
+    });
+});
 queueRouter.delete('/', (request: express.Request, response: express.Response) => {
     queue.getQueue((status, deleteQueueResponse) => {
         return response.status(status).send(deleteQueueResponse);
@@ -41,7 +49,7 @@ queueRouter.get('/poll/:user_id', (request: express.Request, response: express.R
     if (!user_id) {
         return response.status(400).send(Logger.logResponse('Error, Bad params for POLL from QUEUE'));
     }
-    queue.pollSpecificUser(user_id, (status, pollSpecificUserResponse) =>  {
+    queue.pollSpecificUser(user_id, (status, pollSpecificUserResponse) => {
         return response.status(status).send(pollSpecificUserResponse);
     });
 });

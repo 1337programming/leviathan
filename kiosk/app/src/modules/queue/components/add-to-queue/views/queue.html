@@ -1,33 +1,38 @@
 <div class="container center fadein">
-    <div class="row">
-        <h1>
-            You've been added to the queue!
-        </h1>
-    </div>
 
-    <div class="row">
-        <h3>You are 7th in line</h3>
+	<div class="row" *ngIf="user">
+		<h3>
+			Thank you {{user.firstname}} {{user.lastname}}. You've been added to the queue!
+		</h3>
+	</div>
+	<div *ngIf="!user">
+		<loading-indicator></loading-indicator>
+	</div>
 
-        <h3>Approx. wait time: 11 min</h3>
-    </div>
+	<div class="row" *ngIf="userPosition">
+		<h5>You are {{userPosition}}th in line</h5>
 
-    <div class="row">
-        <h3>Why not visit Starbucks while you wait?</h3>
-        <h4>
-            Here's $1 off! Scan for coupon
-        </h4>
-        <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Wikipedia_mobile_en.svg/2000px-Wikipedia_mobile_en.svg.png">
-    </div>
+		<h5>Approx. wait time: {{userPosition*2.2}} min</h5>
+	</div>
+	<div *ngIf="!userPosition">
+		<loading-indicator></loading-indicator>
+	</div>
 
-    <div class="row m-t-lg">
-        <div class="col-xs-12 buttons-container button-spacing">
-            <div class="button-box">
-                <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-            </div>
+	<div class="row">
+		<h3>Why not visit Starbucks while you wait?</h3>
+		<h4>
+			Here's $1 off! Scan for coupon
+		</h4>
+		<img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Wikipedia_mobile_en.svg/2000px-Wikipedia_mobile_en.svg.png">
+	</div>
 
-            <div class="button-box">
-                <button class="btn btn-primary" (click)="exit()">Exit</button>
-            </div>
-        </div>
-    </div>
+	<div class="row m-t-lg">
+		<div class="col-xs-12 buttons-container button-spacing">
+			<div class="button-box">
+				<button class="btn btn-primary" (click)="exit()">Exit</button>
+			</div>
+		</div>
+	</div>
+
+	<queue-dashboard [user]="user"></queue-dashboard>
 </div>

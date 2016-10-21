@@ -10,12 +10,12 @@ import {AccountComponent} from './account.component';
 import {AboutPlanComponent} from './components/about-plan/about-plan.component';
 import {UpdatePlanComponent} from './components/update-plan/update-plan.component';
 import {AccountService}  from './services/account.service';
+import {KioskCommonModule} from '../../common/common.module';
 
 // Directives
 
 // Routes
 import {routing} from './account.router';
-import {KioskCommonModule} from '../../common/common.module';
 
 // Services
 

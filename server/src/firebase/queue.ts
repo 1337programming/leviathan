@@ -25,11 +25,39 @@ export class Queue {
     getQueue(callback: (status: number, response: any) => void) {
         let fullQueueRef = this._queue_ref;
         fullQueueRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
+
             if (snapshot.exists()) {
                 Logger.log('SUCCESS: Get queue');
                 callback(200, snapshot.val());
             } else {
                 callback(500, Logger.logResponse('ERROR: Get Queue'));
+            }
+        });
+    }
+
+    getUserPosition(userId: string, callback: (status: number, response: any) => void) {
+        let fullQueueRef = this._queue_ref;
+        fullQueueRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
+            if (snapshot.exists()) {
+                let queue = snapshot.val();
+                this.findQueueItem(userId, (queueId) => {
+                    if (queueId) {
+                        let position = 1;
+                        for (let key in queue) {
+                            if (key == queueId) {
+                                Logger.log('Success: Finding position for user in queue for: ' + userId);
+                                callback(200, { 'position': position });
+                                break;
+                            }
+                            position++;
+                        }
+                    } else {
+                        return callback(404, Logger.logResponse('Could not find user in queue for userId: ' + userId));
+                    }
+                });
+
+            } else {
+                callback(500, Logger.logResponse('ERROR: Getting queue'));
             }
         });
     }
