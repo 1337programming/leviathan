@@ -15,12 +15,12 @@ let template = require('./views/add-funds.html');
 export class AddFundsComponent implements OnInit {
 
   @ViewChild(HelpComponent) private help: HelpComponent;
-  private loaded: boolean;
+  private disable: boolean;
 
   private user: any;
 
   constructor(private router: Router, private _fundService: FundsService) {
-    this.loaded = false;
+    this.disable = false;
   }
 
   public ngOnInit() {
@@ -37,7 +37,7 @@ export class AddFundsComponent implements OnInit {
     this.help.showDialog();
   }
 
-  private fundsLoaded(val: boolean) {
-    this.loaded = true;
+  private disableOptions(val: boolean) {
+    this.disable = val;
   }
 }

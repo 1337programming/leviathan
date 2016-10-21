@@ -3,7 +3,7 @@
 import * as firebase from 'firebase';
 import { FB } from './helper/setup';
 import { Logger } from '../utils/logger';
-import { UserTemplate } from './model/user-template';
+import { UserTemplate, DepositTemplate } from './model/user-template';
 
 export class User {
     private _logger: Logger;
@@ -62,6 +62,32 @@ export class User {
                 } else {
                     Logger.log('SUCCESS: Update user, no match: ' + userId);
                     callback(200, null);
+                }
+            });
+        }
+    }
+
+    depositFunds(userId: string, depositTemplate: DepositTemplate, callback: (status: number, response: any) => void) {
+        if (!depositTemplate.valid()) {
+            Logger.log('ERROR: Invalid Deposit Template');
+            callback(400, null);
+        } else {
+            let childUserRef = this._user_ref.child(userId);
+            childUserRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
+                if (snapshot.exists()) {
+                    let depositAmount = depositTemplate.getData().deposit;
+                    let existingFunds = snapshot.val().funds;
+                    // Assumption that funds can only be greater than or equal to zero
+                    let newFundsAmount = ((existingFunds - depositAmount) >= 0 ? (existingFunds - depositAmount) : 0);
+                    let newFunds = { 'funds': newFundsAmount};
+                    childUserRef.update(newFunds).then(() => {
+                        callback(200, Logger.logResponse('SUCCESS: Deposited funds for: ' + userId));
+                    }).catch((error) => {
+                        callback(500, Logger.logResponse('ERROR, Depsiting funds for user: ' + error));
+                    });
+                } else {
+                    Logger.log('SUCCESS: Deposit funds, no match: ' + userId);
+                    callback(200, null); // TODO: If user is deleted, this shows success
                 }
             });
         }

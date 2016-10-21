@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FundsService } from '../../services/funds.service';
 
 let style = require('!!raw!sass!./views/confirmation.scss');
 let template = require('./views/confirmation.html');
@@ -8,9 +9,21 @@ let template = require('./views/confirmation.html');
   template: template,
   styles: [style]
 })
-export class ConfirmationComponent {
-  
-  constructor() {
+export class ConfirmationComponent implements OnInit {
+
+  private user: any;
+
+  constructor(private _fundService: FundsService) {
   }
-  
+
+  public ngOnInit() {
+    this._fundService.getUser().subscribe(
+      (user) => {
+        this.user = user;
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
+
 }

@@ -5,7 +5,7 @@
 import * as express from 'express';
 import { Logger } from '../utils/logger';
 import { User } from '../firebase/user';
-import { UserTemplate } from '../firebase/model/user-template';
+import { UserTemplate, DepositTemplate } from '../firebase/model/user-template';
 
 let userRouter: express.Router = express.Router();
 let user = new User();
@@ -18,6 +18,18 @@ userRouter.post('/', (request: express.Request, response: express.Response) => {
     let userTemplate = new UserTemplate(params);
     user.createUser(userTemplate, (status, postUserResponse) => {
         return response.status(status).send(postUserResponse);
+    });
+});
+
+userRouter.post('/deposit/:user_id', (request: express.Request, response: express.Response) => {
+    let params = request.body;
+    let user_id = request.params.user_id;
+    if (!params || !user_id) {
+        return response.status(400).send(Logger.logResponse('ERROR, Bad params, for DEPPSIT funds'));
+    }
+    let depositTemplate = new DepositTemplate(params);
+    user.depositFunds(user_id, depositTemplate, (status, depositFundsResonse) => {
+        return response.status(status).send(depositFundsResonse);
     });
 });
 

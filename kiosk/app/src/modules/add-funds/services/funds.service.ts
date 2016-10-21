@@ -14,6 +14,42 @@ export class FundsService {
         return this.getUserDetails(userId);
     }
 
+    public depositFunds(amount: number) {
+        let userId = this._authService.getUserFromToken();
+
+        let body = JSON.stringify({ 'deposit': amount });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.post(ACCOUNT_URL + 'deposit/' + userId, body, options)
+            .map(this.handleDepositResponse)
+            .catch(this.handleDepositerror);
+    }
+
+    private handleDepositResponse(res: Response): boolean {
+        let status = res.status;
+        if (status !== 200) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private handleDepositerror(error: any) {
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        let errorDisplay, status = error.status ? error.status : 999;
+        if (status === 400) {
+            errorDisplay = 'Invalid parameters for deposit';
+        } else if (status === 403) {
+            errorDisplay = 'UserId does not exist';
+        } else {
+            errorDisplay = 'Oops! Server Error';
+        }
+
+        return Observable.throw(errorDisplay);
+    }
     private getUserDetails(userId: string): any {
         return this._http.get(ACCOUNT_URL + userId)
             .map(this.handleGetUserResponse)
@@ -33,9 +69,5 @@ export class FundsService {
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }
-
-    // public depositFunds(userId: string, amount: number) {
-
-    // }
 
 }

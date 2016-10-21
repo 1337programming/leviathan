@@ -5,18 +5,18 @@
 		</div>
 	</div>
 	<div *ngIf="user">
-		<funds [funds]="user.funds"></funds>
+		<funds [funds]="user.funds" (disable)="disableOptions($event)"></funds>
 	</div>
 	<div *ngIf="!user">
 		<loading-indicator></loading-indicator>
 	</div>
-	<div class="row spacing">
+	<div class="row spacing" [hidden]="disable">
 		<div class="col-xs-12 buttons-container button-spacing">
 			<div class="button-box">
 				<button class="btn btn-secondary" (click)="callHelp()">Call Rep</button>
 			</div>
 			<div class="button-box">
-				<button class="btn btn-primary" [class.disabled]="!loaded" [disabled]="!loaded" [routerLink]="['/add-funds/confirmation']">Done</button>
+				<button class="btn btn-primary" [class.disabled]="!user" [disabled]="!user" [routerLink]="['/add-funds/confirmation']">Done</button>
 			</div>
 		</div>
 	</div>

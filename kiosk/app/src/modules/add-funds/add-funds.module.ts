@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // Modules
-import { DialogModule } from 'primeng/primeng';
+import { GrowlModule, DialogModule } from 'primeng/primeng';
 import { KioskCommonModule } from '../../common/common.module';
 
 // Components
@@ -21,7 +21,7 @@ import { FundsService } from './services/funds.service';
 
 @NgModule({
   imports: [
-    CommonModule, ReactiveFormsModule, FormsModule, routing, DialogModule, KioskCommonModule
+    CommonModule, ReactiveFormsModule, FormsModule, routing, GrowlModule, DialogModule, KioskCommonModule
   ],
   declarations: [AddFundsComponent, ConfirmationComponent, FundsComponent],
   providers: [FundsService]

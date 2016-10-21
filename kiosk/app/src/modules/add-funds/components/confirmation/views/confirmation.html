@@ -1,24 +1,32 @@
 <div class="container margin-top fadein">
 
-    <div id="confirmation"><!-- confirmation -->
+	<div id="confirmation">
+		<!-- confirmation -->
 
-        <div class="page-title gray-bg">
-            <div class="container">
-                <h1 class="m-t-xl m-b-xl">Transaction Completed!</h1>
-            </div>
-        </div>
-        <div title-header-spacing="" style="height: 145px;"></div>
-        <div class="row">
-            <p class="col-xs-12 lead m-t-xl">A confirmation message has been sent to (444)-555-6768</p>
-        </div>
-        <hr class="divider m-t-xl">
-        <div class="row">
-            <div class="col-xs-12 buttons-container button-spacing-legal text-center">
-                <button class="btn btn-primary" [routerLink]="['/complete']">Exit</button>
-            </div>
-        </div>
+		<div class="page-title gray-bg">
+			<div class="container">
+				<h1 class="m-t-xl m-b-xl">Transaction Completed!</h1>
+			</div>
+		</div>
+		<div *ngIf="user">
+			<div title-header-spacing="" style="height: 145px;"></div>
+			<h2 class="price-text n1 fadein">New Funds: {{user.funds | currency:'USD':true}}</h2>
+			<div class="row">
+				<p class="col-xs-12 lead m-t-xl">A confirmation message has been sent to {{user.phone}}</p>
+			</div>
+		</div>
+		<div *ngIf="!user">
+			<loading-indicator></loading-indicator>
+		</div>
+		<hr class="divider m-t-xl">
+		<div class="row">
+			<div class="col-xs-12 buttons-container button-spacing-legal text-center">
+				<button class="btn btn-primary" [routerLink]="['/complete']">Exit</button>
+			</div>
+		</div>
 
 
-    </div><!--/ div#confirmation -->
+	</div>
+	<!--/ div#confirmation -->
 
 </div>

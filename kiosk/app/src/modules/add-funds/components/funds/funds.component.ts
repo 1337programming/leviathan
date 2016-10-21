@@ -1,4 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { Message } from 'primeng/primeng';
+import { Observable } from 'rxjs';
+
+import { FundsService } from '../../services/funds.service';
 
 let style = require('!!raw!sass!./views/funds.scss');
 let template = require('./views/funds.html');
@@ -14,12 +19,16 @@ export class FundsComponent implements OnInit {
   private addingFunds: boolean;
   private cashOption: boolean;
 
-  @Input() private funds: number;
+  private msgs: Array<Message>;
 
-  constructor() {
+  @Input() private funds: number;
+  @Output() private disable = new EventEmitter();
+
+  constructor(private router: Router, private _fundsService: FundsService) {
     this.processingPayment = false;
     this.addingFunds = false;
     this.cashOption = false;
+    this.msgs = [];
   }
 
   public ngOnInit() {
@@ -27,9 +36,11 @@ export class FundsComponent implements OnInit {
 
   public addFunds() {
     this.addingFunds = true;
+    this.disable.emit(true);
   }
   public stopAdding() {
     this.addingFunds = false;
+    this.disable.emit(false);
   }
 
   public chooseCash() {
@@ -42,8 +53,18 @@ export class FundsComponent implements OnInit {
     if (!form.valid) { // Dont process submit
       this.processingPayment = true;
       setTimeout(() => {
-        this.processingPayment = false;
-        this.stopAdding();
+        // Call service to deposit funds
+        this._fundsService.depositFunds(form.payment)
+          .subscribe(
+          (token) => {
+            this.router.navigate(['add-funds/confirmation']);
+          },
+          (err) => {
+            this.msgs.push({
+              severity: 'error', summary: err
+            });
+            return Observable.of(err.message);
+          });
       }, 2000);
     }
   }
