@@ -1,4 +1,4 @@
 # leviathan
 Levi Jeans
 
-All TypeScript!!!
+All TypeScript and C++!!!
