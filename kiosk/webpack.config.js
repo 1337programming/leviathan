@@ -26,7 +26,8 @@ config.plugins.push(new webpack.DefinePlugin({
 }));
 if (argv.prod) {
   config.plugins.push(new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'app/index.html')
+    template: path.resolve(__dirname, 'app/index.html'),
+    inject: false
   }));
   config.plugins.push(new FaviconsWebpackPlugin(path.resolve(__dirname, 'app/images/tmobile-logo.png')));
   /*

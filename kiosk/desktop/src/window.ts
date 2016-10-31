@@ -3,9 +3,9 @@ const electron = require('electron');
 const {app, Menu, Tray} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
-const path = require('path');
+var path = require('path');
 
-const iconPath = path.join(__dirname, 'tray-icon.png');
+const iconPath = path.join(__dirname, 'icons/tray-icon.png');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
